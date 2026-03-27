@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio 1fsi</title>
+    <title>1fsi - Portfolio</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* CSS TOTALMENTE REESCRITO PARA CLONAR LA ESTRUCTURA DE LA IMAGEN */
         * {
             margin: 0;
             padding: 0;
@@ -19,29 +17,25 @@
         }
 
         body {
-            /* Degradado de fondo idéntico al de la imagen */
             background: radial-gradient(circle at top right, #1a4d2e, transparent 50%),
                         radial-gradient(circle at bottom left, #4b1c61, transparent 50%),
                         #0a0a0a;
             color: white;
             min-height: 100vh;
             padding: 20px;
-            overflow-x: hidden;
             display: flex;
             justify-content: center;
         }
 
-        /* --- Contenedor Principal (La Malla) --- */
         .main-container {
             display: grid;
-            grid-template-columns: 280px 1fr 280px; /* Columnas laterales fijas, centro flexible */
+            grid-template-columns: 280px 1fr 280px;
             gap: 20px;
             width: 100%;
-            max-width: 1200px;
-            margin-top: 40px;
+            max-width: 1100px;
+            margin-top: 50px;
         }
 
-        /* --- Columna Central (Perfil e Información) --- */
         .center-column {
             display: flex;
             flex-direction: column;
@@ -49,162 +43,123 @@
             gap: 20px;
         }
 
-        .profile-container {
-            text-align: center;
-        }
-
         .avatar {
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            border: 4px solid;
-            /* Borde neón brillante (como en la imagen) */
-            border-image: linear-gradient(to bottom right, #ff9900, #ff00ff) 1;
-            box-shadow: 0 0 20px rgba(255, 153, 0, 0.5);
-            margin-bottom: 20px;
-            object-fit: cover; /* Para que la imagen no se deforme */
+            border: 3px solid #5865F2;
+            box-shadow: 0 0 25px rgba(88, 101, 242, 0.4);
+            margin-bottom: 15px;
+            object-fit: cover;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            letter-spacing: -1px;
         }
 
         .subtitle {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #b9bbbe;
-            max-width: 400px;
+            text-align: center;
+            margin-bottom: 10px;
         }
 
-        /* Tarjeta Sobre Mí (idéntica a la imagen) */
+        /* Tarjeta Sobre Mí */
         .info-card {
             background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            padding: 30px;
+            border-radius: 15px;
+            padding: 25px;
             width: 100%;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
         }
 
         .card-header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .card-header i { font-size: 1.5rem; color: #ff00ff; }
-        .card-header h2 { font-size: 1.5rem; }
-
-        .card-body p {
-            color: #b9bbbe;
-            line-height: 1.6;
-            font-size: 0.95rem;
+            gap: 10px;
             margin-bottom: 15px;
         }
 
-        .highlight { color: #ff9900; font-weight: 600; }
+        .card-header i { color: #ff00ff; }
 
-        /* --- Columnas Laterales (Botones) --- */
+        .card-body p {
+            color: #dcddde;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Botones Laterales */
         .side-column {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 60px; /* Baja un poco los botones laterales */
+            gap: 12px;
+            margin-top: 80px;
         }
 
         .link-button {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 15px;
+            border-radius: 50px; /* Estilo píldora como la imagen */
+            padding: 12px 20px;
             text-decoration: none;
             color: white;
             display: flex;
             align-items: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-            position: relative;
+            justify-content: space-between;
+            transition: 0.3s;
         }
 
-        /* Efecto de borde neón en hover */
         .link-button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 0 10px rgba(88, 101, 242, 0.5); /* Color Discord por defecto */
+            background: rgba(88, 101, 242, 0.1);
             border-color: #5865F2;
+            transform: scale(1.02);
         }
 
-        .link-button i {
-            font-size: 1.3rem;
-            width: 25px;
-            text-align: center;
-        }
-
-        /* Colores específicos de los iconos (como en la imagen) */
-        .btn-principal i { color: #ff9900; }
-        .btn-info i { color: #ff00ff; }
-        .btn-java i { color: #5382a1; } /* Color Java */
-        .btn-discord i { color: #5865F2; }
-        .btn-contacto i { color: #00ffcc; }
-
-        .btn-text h3 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        /* flecha indicadora */
-        .link-button::after {
-            content: '▶';
-            position: absolute;
-            right: 15px;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* --- Reproductor de Música (Simulado) --- */
-        .music-widget {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 15px;
-            padding: 15px;
+        .btn-content {
             display: flex;
             align-items: center;
-            gap: 15px;
-            width: 100%;
-            max-width: 400px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 10px;
+            gap: 10px;
         }
 
-        .album-art { width: 50px; height: 50px; border-radius: 8px; background: #222; overflow: hidden; }
+        .btn-content i { font-size: 1.1rem; }
+        .fa-home { color: #ff9900; }
+        .fa-user { color: #ff00ff; }
+        .fa-java { color: #5382a1; }
+        .fa-discord { color: #5865F2; }
+
+        /* Reproductor */
+        .music-widget {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .album-art { width: 45px; height: 45px; border-radius: 6px; overflow: hidden; }
         .album-art img { width: 100%; height: 100%; object-fit: cover; }
 
-        .music-info h4 { font-size: 0.9rem; margin-bottom: 2px; }
-        .music-info p { font-size: 0.75rem; color: #b9bbbe; }
+        .music-info h4 { font-size: 0.85rem; }
+        .music-info p { font-size: 0.7rem; color: #72767d; }
 
-        /* --- Fondo Animado (Vanta.js Net) --- */
         #vanta-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Detrás de todo */
+            z-index: -1;
         }
 
-        /* --- Responsivo (Para celulares) --- */
         @media (max-width: 900px) {
-            .main-container {
-                grid-template-columns: 1fr; /* Una sola columna en móvil */
-                gap: 10px;
-            }
-            .side-column {
-                margin-top: 0;
-                order: 2; /* Pone los botones debajo en móvil */
-            }
-            h1 { font-size: 2rem; }
+            .main-container { grid-template-columns: 1fr; margin-top: 20px; }
+            .side-column { order: 2; margin-top: 0; }
         }
     </style>
 </head>
@@ -215,29 +170,24 @@
     <div class="main-container">
 
         <div class="side-column">
-            <a href="#" class="link-button btn-principal">
-                <i class="fas fa-home"></i>
-                <div class="btn-text">
-                    <h3>Principal</h3>
-                </div>
+            <a href="#" class="link-button">
+                <div class="btn-content"><i class="fas fa-home"></i> <span>Principal</span></div>
+                <span>▶</span>
             </a>
-            <a href="#" class="link-button btn-info">
-                <i class="fas fa-user"></i>
-                <div class="btn-text">
-                    <h3>Información</h3>
-                </div>
+            <a href="#" class="link-button">
+                <div class="btn-content"><i class="fas fa-user"></i> <span>Información</span></div>
+                <span>▶</span>
             </a>
         </div>
 
         <div class="center-column">
             <div class="profile-container">
-                <img src="https://i.imgur.com/nnTKLmw.png" alt="Avatar" class="avatar">
-                <h1>1fsi</h1> <p class="subtitle">Desarrollador de Bots & Configurador | RawCode Studios</p>
+                <img src="https://i.imgur.com/nnTKLmw.png" alt="1fsi" class="avatar">
+                <h1>1fsi</h1>
+                <p class="subtitle">Creador de Bots personalizados & Configurador de modalidades y plugins de Minecraft</p>
                 
                 <div class="music-widget">
-                    <div class="album-art">
-                        <img src="https://i.imgur.com/j1vWpY0.jpeg" alt="Album Art">
-                    </div>
+                    <div class="album-art"><img src="https://i.imgur.com/j1vWpY0.jpeg"></div>
                     <div class="music-info">
                         <h4>POR SI MAÑANA NO ESTO</h4>
                         <p>Omar Courtz</p>
@@ -251,30 +201,23 @@
                     <h2>Sobre Mí</h2>
                 </div>
                 <div class="card-body">
-                    <p>¡Hola! Soy <span class="highlight">Benjamín</span>, más conocido en la comunidad como el fundador de <span class="highlight">RawCode Studios</span>.</p>
-                    <p>Soy un Configurador por el código y la creación de herramientas eficientes para comunidades. Me especializo en el desarrollo de Bots de Discord usando Node.js y en la configuración avanzada de servidores de Minecraft (Java).</p>
+                    <p>¡Hola! Soy 1fsi. Me especializo en llevar servidores al siguiente nivel mediante la creación de herramientas eficientes y configuraciones técnicas avanzadas.</p>
                 </div>
             </div>
         </div>
 
         <div class="side-column">
-            <a href="#" class="link-button btn-java">
-                <i class="fab fa-java"></i>
-                <div class="btn-text">
-                    <h3>Java Dev</h3>
-                </div>
+            <a href="#" class="link-button">
+                <div class="btn-content"><i class="fab fa-java"></i> <span>Java Dev</span></div>
+                <span>▶</span>
             </a>
-            <a href="#" class="link-button btn-discord">
-                <i class="fab fa-discord"></i>
-                <div class="btn-text">
-                    <h3>Discord Dev</h3>
-                </div>
+            <a href="#" class="link-button">
+                <div class="btn-content"><i class="fab fa-discord"></i> <span>Discord Dev</span></div>
+                <span>▶</span>
             </a>
-            <a href="#" class="link-button btn-contacto">
-                <i class="fas fa-envelope"></i>
-                <div class="btn-text">
-                    <h3>Contacto</h3>
-                </div>
+            <a href="#" class="link-button">
+                <div class="btn-content"><i class="fas fa-envelope"></i> <span>Contacto</span></div>
+                <span>▶</span>
             </a>
         </div>
 
@@ -283,7 +226,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     <script>
-        // Inicializar la animación de red de fondo
         VANTA.NET({
             el: "#vanta-canvas",
             mouseControls: true,
@@ -293,11 +235,11 @@
             minWidth: 200.00,
             scale: 1.00,
             scaleMobile: 1.00,
-            color: 0xff9900, /* Color neón naranja/amarillo */
-            backgroundColor: 0x0a0a0a, /* Fondo casi negro */
-            points: 10.00,
-            maxDistance: 20.00,
-            spacing: 15.00
+            color: 0x5865F2,
+            backgroundColor: 0x0a0a0a,
+            points: 12.00,
+            maxDistance: 22.00,
+            spacing: 16.00
         });
     </script>
 </body>
