@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio - Clon Zwancra</title>
+    <title>Portafolio 1fsi</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* CSS TOTALMENTE PERSONALIZADO PARA CLONAR LA IMAGEN */
+        /* CSS TOTALMENTE REESCRITO PARA CLONAR LA ESTRUCTURA DE LA IMAGEN */
         * {
             margin: 0;
             padding: 0;
@@ -20,22 +20,37 @@
 
         body {
             /* Degradado de fondo idéntico al de la imagen */
-            background: radial-gradient(circle at top right, #1a4d2e, transparent 40%),
-                        radial-gradient(circle at bottom left, #4b1c61, transparent 40%),
+            background: radial-gradient(circle at top right, #1a4d2e, transparent 50%),
+                        radial-gradient(circle at bottom left, #4b1c61, transparent 50%),
                         #0a0a0a;
             color: white;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* --- Contenedor Principal (La Malla) --- */
+        .main-container {
+            display: grid;
+            grid-template-columns: 280px 1fr 280px; /* Columnas laterales fijas, centro flexible */
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 40px;
+        }
+
+        /* --- Columna Central (Perfil e Información) --- */
+        .center-column {
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            padding: 40px 20px;
-            overflow-x: hidden;
+            gap: 20px;
         }
 
-        /* --- Perfil y Título --- */
         .profile-container {
             text-align: center;
-            margin-bottom: 40px;
         }
 
         .avatar {
@@ -43,10 +58,11 @@
             height: 120px;
             border-radius: 50%;
             border: 4px solid;
-            /* Borde neón brillante */
+            /* Borde neón brillante (como en la imagen) */
             border-image: linear-gradient(to bottom right, #ff9900, #ff00ff) 1;
             box-shadow: 0 0 20px rgba(255, 153, 0, 0.5);
             margin-bottom: 20px;
+            object-fit: cover; /* Para que la imagen no se deforme */
         }
 
         h1 {
@@ -59,73 +75,15 @@
             font-size: 1rem;
             color: #b9bbbe;
             max-width: 400px;
-            margin: 0 auto;
         }
 
-        /* --- Botones Neón (Malla) --- */
-        .links-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 800px;
-            margin-bottom: 40px;
-        }
-
-        .link-button {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Efecto de borde neón en hover */
-        .link-button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 0 15px rgba(88, 101, 242, 0.5); /* Color Discord */
-            border-color: #5865F2;
-        }
-
-        /* Colores específicos para imitar los iconos de la imagen */
-        .link-button i {
-            font-size: 1.5rem;
-        }
-        .btn-principal i { color: #ff9900; }
-        .btn-info i { color: #ff00ff; }
-        .btn-java i { color: #5382a1; } /* Color Java */
-        .btn-discord i { color: #5865F2; }
-        .btn-contacto i { color: #00ffcc; }
-
-        .btn-text h3 { font-size: 1.1rem; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-text p { font-size: 0.85rem; color: #b9bbbe; }
-
-        /* flecha indicadora */
-        .link-button::after {
-            content: '▶';
-            position: absolute;
-            right: 20px;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* --- Tarjeta de Información (Sobre Mí) --- */
+        /* Tarjeta Sobre Mí (idéntica a la imagen) */
         .info-card {
             background: rgba(255, 255, 255, 0.03);
             border-radius: 20px;
             padding: 30px;
             width: 100%;
-            max-width: 800px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            margin-bottom: 40px;
         }
 
         .card-header {
@@ -147,6 +105,65 @@
 
         .highlight { color: #ff9900; font-weight: 600; }
 
+        /* --- Columnas Laterales (Botones) --- */
+        .side-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 60px; /* Baja un poco los botones laterales */
+        }
+
+        .link-button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Efecto de borde neón en hover */
+        .link-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px rgba(88, 101, 242, 0.5); /* Color Discord por defecto */
+            border-color: #5865F2;
+        }
+
+        .link-button i {
+            font-size: 1.3rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        /* Colores específicos de los iconos (como en la imagen) */
+        .btn-principal i { color: #ff9900; }
+        .btn-info i { color: #ff00ff; }
+        .btn-java i { color: #5382a1; } /* Color Java */
+        .btn-discord i { color: #5865F2; }
+        .btn-contacto i { color: #00ffcc; }
+
+        .btn-text h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* flecha indicadora */
+        .link-button::after {
+            content: '▶';
+            position: absolute;
+            right: 15px;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
         /* --- Reproductor de Música (Simulado) --- */
         .music-widget {
             background: rgba(0, 0, 0, 0.5);
@@ -156,16 +173,16 @@
             align-items: center;
             gap: 15px;
             width: 100%;
-            max-width: 800px;
-            margin-bottom: 40px;
+            max-width: 400px;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 10px;
         }
 
-        .album-art { width: 60px; height: 60px; border-radius: 10px; background: #222; overflow: hidden; }
+        .album-art { width: 50px; height: 50px; border-radius: 8px; background: #222; overflow: hidden; }
         .album-art img { width: 100%; height: 100%; object-fit: cover; }
 
-        .music-info h4 { font-size: 1rem; margin-bottom: 3px; }
-        .music-info p { font-size: 0.8rem; color: #b9bbbe; }
+        .music-info h4 { font-size: 0.9rem; margin-bottom: 2px; }
+        .music-info p { font-size: 0.75rem; color: #b9bbbe; }
 
         /* --- Fondo Animado (Vanta.js Net) --- */
         #vanta-canvas {
@@ -176,81 +193,91 @@
             height: 100%;
             z-index: -1; /* Detrás de todo */
         }
+
+        /* --- Responsivo (Para celulares) --- */
+        @media (max-width: 900px) {
+            .main-container {
+                grid-template-columns: 1fr; /* Una sola columna en móvil */
+                gap: 10px;
+            }
+            .side-column {
+                margin-top: 0;
+                order: 2; /* Pone los botones debajo en móvil */
+            }
+            h1 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
 
     <div id="vanta-canvas"></div>
 
-    <div class="profile-container">
-        <img src="https://i.imgur.com/8Km9tLL.png" alt="Avatar" class="avatar">
-        <h1>Benjamín</h1>
-        <p class="subtitle">Desarrollador de Bots & Configurador | RawCode Studios</p>
-    </div>
+    <div class="main-container">
 
-    <div class="links-container">
-        
-        <a href="#" class="link-button btn-principal">
-            <i class="fas fa-home"></i>
-            <div class="btn-text">
-                <h3>Principal</h3>
-                <p>Volver al inicio</p>
-            </div>
-        </a>
-
-        <a href="#" class="link-button btn-info">
-            <i class="fas fa-user"></i>
-            <div class="btn-text">
-                <h3>Información</h3>
-                <p>Sobre mis servicios</p>
-            </div>
-        </a>
-
-        <a href="#" class="link-button btn-java">
-            <i class="fab fa-java"></i>
-            <div class="btn-text">
-                <h3>Java Dev</h3>
-                <p>Configuraciones de Minecraft</p>
-            </div>
-        </a>
-
-        <a href="#" class="link-button btn-discord">
-            <i class="fab fa-discord"></i>
-            <div class="btn-text">
-                <h3>Discord Dev</h3>
-                <p>Creación de Bots personalizados</p>
-            </div>
-        </a>
-
-        <a href="#" class="link-button btn-contacto">
-            <i class="fas fa-envelope"></i>
-            <div class="btn-text">
-                <h3>Contacto</h3>
-                <p>Trabajemos juntos</p>
-            </div>
-        </a>
-
-    </div>
-
-    <div class="music-widget">
-        <div class="album-art">
-            <img src="https://i.imgur.com/j1vWpY0.jpeg" alt="Album Art">
+        <div class="side-column">
+            <a href="#" class="link-button btn-principal">
+                <i class="fas fa-home"></i>
+                <div class="btn-text">
+                    <h3>Principal</h3>
+                </div>
+            </a>
+            <a href="#" class="link-button btn-info">
+                <i class="fas fa-user"></i>
+                <div class="btn-text">
+                    <h3>Información</h3>
+                </div>
+            </a>
         </div>
-        <div class="music-info">
-            <h4>POR SI MAÑANA NO ESTO</h4>
-            <p>Omar Courtz</p>
-        </div>
-    </div>
 
-    <div class="info-card">
-        <div class="card-header">
-            <i class="fas fa-info-circle"></i>
-            <h2>Sobre Mí</h2>
+        <div class="center-column">
+            <div class="profile-container">
+                <img src="https://i.imgur.com/nnTKLmw.png" alt="Avatar" class="avatar">
+                <h1>1fsi</h1> <p class="subtitle">Desarrollador de Bots & Configurador | RawCode Studios</p>
+                
+                <div class="music-widget">
+                    <div class="album-art">
+                        <img src="https://i.imgur.com/j1vWpY0.jpeg" alt="Album Art">
+                    </div>
+                    <div class="music-info">
+                        <h4>POR SI MAÑANA NO ESTO</h4>
+                        <p>Omar Courtz</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-info-circle"></i>
+                    <h2>Sobre Mí</h2>
+                </div>
+                <div class="card-body">
+                    <p>¡Hola! Soy <span class="highlight">Benjamín</span>, más conocido en la comunidad como el fundador de <span class="highlight">RawCode Studios</span>.</p>
+                    <p>Soy un Configurador por el código y la creación de herramientas eficientes para comunidades. Me especializo en el desarrollo de Bots de Discord usando Node.js y en la configuración avanzada de servidores de Minecraft (Java).</p>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <p>¡Hola! Soy <span class="highlight">Benjamín</span>, más conocido en la comunidad como el fundador de <span class="highlight">RawCode Studios</span>.</p>
-            <p>Soy un apasionado por el código y la creación de herramientas eficientes para comunidades. Me especializo en el desarrollo de Bots de Discord usando Node.js y en la configuración avanzada de servidores de Minecraft (Java).</p>
+
+        <div class="side-column">
+            <a href="#" class="link-button btn-java">
+                <i class="fab fa-java"></i>
+                <div class="btn-text">
+                    <h3>Java Dev</h3>
+                </div>
+            </a>
+            <a href="#" class="link-button btn-discord">
+                <i class="fab fa-discord"></i>
+                <div class="btn-text">
+                    <h3>Discord Dev</h3>
+                </div>
+            </a>
+            <a href="#" class="link-button btn-contacto">
+                <i class="fas fa-envelope"></i>
+                <div class="btn-text">
+                    <h3>Contacto</h3>
+                </div>
+            </a>
         </div>
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
