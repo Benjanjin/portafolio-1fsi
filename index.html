@@ -94,12 +94,12 @@
             font-size: 0.9rem; display: flex; align-items: center; gap: 10px;
         }
 
-        /* --- SECCIÓN DE BOTS MEJORADA --- */
+        /* --- SECCIÓN DE BOTS --- */
         .bots-section {
             width: 100%; background: var(--glass); border-radius: 20px;
             border: 1px solid var(--glass-border); padding: 30px;
             margin-bottom: 25px; display: flex; align-items: center;
-            gap: 30px; position: relative; overflow: visible; /* Cambiado a visible para el zoom */
+            gap: 30px; position: relative; overflow: visible;
         }
         .bots-content { flex: 1; }
         .bots-title {
@@ -108,11 +108,13 @@
             align-items: center; gap: 10px; letter-spacing: 1px;
         }
         .bots-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        
+        /* Modificado para que parezcan botones */
         .bot-item {
             background: rgba(255, 255, 255, 0.02); padding: 10px 15px;
             border-radius: 8px; border-left: 3px solid var(--primary);
             font-size: 0.85rem; display: flex; align-items: center; gap: 12px;
-            transition: 0.3s ease;
+            transition: 0.3s ease; cursor: pointer;
         }
         .bot-item:hover { background: rgba(88, 101, 242, 0.08); transform: translateX(8px); border-left-color: var(--accent); }
         .bot-item i { width: 18px; color: var(--primary); text-align: center; }
@@ -122,9 +124,8 @@
         .ticket-preview {
             width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s, filter 0.3s;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s, filter 0.3s, opacity 0.3s;
             cursor: zoom-in;
-            /* PARCHE DE CALIDAD */
             image-rendering: -webkit-optimize-contrast; 
             image-rendering: crisp-edges;
             filter: brightness(0.9);
@@ -136,6 +137,9 @@
             filter: brightness(1.1);
             z-index: 100;
         }
+
+        /* Clase para el efecto de cambio de imagen */
+        .img-changing { opacity: 0; transform: scale(0.9); }
 
         .more-tag { margin-top: 15px; font-family: 'VT323', monospace; color: #444; font-size: 1.2rem; text-align: right; letter-spacing: 1px; }
 
@@ -156,7 +160,7 @@
         }
         @keyframes slideBar { 0% { left: -40%; } 100% { left: 100%; } }
 
-        /* --- SECCIÓN SKIN (NÚCLEO DEL SISTEMA) --- */
+        /* --- SECCIÓN SKIN --- */
         .skin-card {
             width: 100%; background: rgba(255, 255, 255, 0.02);
             border-radius: 20px; border: 1px solid var(--glass-border);
@@ -287,8 +291,8 @@
                 </h3>
                 
                 <div class="bots-list">
-                    <div class="bot-item"><i class="fas fa-ticket-alt"></i><span>Sistema de Tickets</span></div>
-                    <div class="bot-item"><i class="fas fa-star"></i><span>Sistema de Reseñas</span></div>
+                    <div class="bot-item" onclick="changeBotImg('https://imgur.com/ytWqc97.png')"><i class="fas fa-ticket-alt"></i><span>Sistema de Tickets</span></div>
+                    <div class="bot-item" onclick="changeBotImg('https://imgur.com/mPCJhyd.png')"><i class="fas fa-star"></i><span>Sistema de Reseñas</span></div>
                     <div class="bot-item"><i class="fas fa-lightbulb"></i><span>Sistema de Sugerencias</span></div>
                     <div class="bot-item"><i class="fas fa-user-check"></i><span>Sistema de Verificaciones</span></div>
                     <div class="bot-item"><i class="fas fa-tags"></i><span>AutoRoles Dinámicos</span></div>
@@ -300,7 +304,7 @@
             </div>
 
             <div class="bots-image-container">
-                <img src="https://imgur.com/ytWqc97.png" alt="Vista Tickets" class="ticket-preview">
+                <img src="https://imgur.com/ytWqc97.png" alt="Vista Previa" class="ticket-preview" id="botPreviewImg">
             </div>
         </div>
 
@@ -341,6 +345,17 @@
             });
             document.getElementById(sectionId).classList.add('show');
             element.classList.add('nav-active');
+        }
+
+        // Nueva función para cambiar la imagen con efecto suave
+        function changeBotImg(url) {
+            const img = document.getElementById('botPreviewImg');
+            img.classList.add('img-changing');
+            
+            setTimeout(() => {
+                img.src = url;
+                img.classList.remove('img-changing');
+            }, 300);
         }
     </script>
 </body>
