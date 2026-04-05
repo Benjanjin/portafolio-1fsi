@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1fsi | System Portfolio</title>
+    <title>1fsi | Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=VT323&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
@@ -13,16 +13,16 @@
         :root {
             --primary: #8a2be2;
             --accent: #00d4ff;
-            --bg-dark: #05050a;
-            --glass: rgba(15, 15, 25, 0.7);
-            --glass-border: rgba(138, 43, 226, 0.2);
-            --violet-glow: rgba(138, 43, 226, 0.4);
+            --bg-dark: #080808;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --violet-neon: #8a2be2;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
 
         body {
-            background: radial-gradient(circle at 50% 50%, #1a0b2e 0%, #05050a 100%);
+            background: radial-gradient(circle at 50% 50%, #1a0b2e 0%, #080808 100%);
             color: white;
             min-height: 100vh;
             display: flex;
@@ -30,306 +30,240 @@
             overflow-x: hidden;
         }
 
-        /* --- LOADING SCREEN --- */
+        /* --- PANTALLA DE CARGA --- */
         #loader {
             position: fixed;
             inset: 0;
-            background: #05050a;
+            background: #080808;
             z-index: 9999;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-family: 'JetBrains Mono', monospace;
+            transition: 0.5s;
         }
-        .loading-text { color: var(--primary); margin-top: 20px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; }
-
-        /* --- BACKGROUND DECOR --- */
-        .bg-glow {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: var(--violet-glow);
-            filter: blur(150px);
-            border-radius: 50%;
-            z-index: -1;
-            top: -100px;
-            right: -100px;
-            opacity: 0.5;
-        }
+        .loading-text { font-family: 'JetBrains Mono', monospace; color: var(--violet-neon); margin-top: 15px; font-size: 0.8rem; letter-spacing: 2px; }
 
         .container {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            max-width: 900px;
-            padding: 60px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
+            position: relative; z-index: 10; width: 100%; max-width: 850px;
+            padding: 40px 20px; display: flex; flex-direction: column; align-items: center;
         }
 
         /* --- HEADER --- */
-        .header { text-align: center; margin-bottom: 20px; }
-        .avatar-wrapper { position: relative; display: inline-block; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .avatar-wrapper { position: relative; display: inline-block; margin-bottom: 15px; }
         .avatar {
-            width: 120px; height: 120px; border-radius: 25px;
-            border: 2px solid var(--primary); padding: 5px;
-            background: rgba(0,0,0,0.5);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 140px; height: 140px; border-radius: 50%;
+            border: 3px solid var(--primary); padding: 5px; background: var(--bg-dark);
+            object-fit: cover; transition: 0.5s;
         }
-        .avatar:hover { transform: translateY(-10px); box-shadow: 0 15px 30px var(--violet-glow); }
-
-        h1 { font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; letter-spacing: -1px; margin-top: 15px; }
-        .tagline { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 0.8rem; opacity: 0.7; }
-
-        /* --- NAVEGACIÓN ESTILO MENÚ --- */
-        .nav-menu {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
+        .active-dot {
+            position: absolute; bottom: 10px; right: 10px;
+            width: 25px; height: 25px; background: #43b581;
+            border-radius: 50%; border: 4px solid var(--bg-dark);
         }
-        .nav-btn {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            padding: 12px 20px;
-            border-radius: 8px;
-            color: #ccc;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
+
+        h1 { font-size: 3rem; font-weight: 800; letter-spacing: -2px; }
+        .tagline { color: #b9bbbe; font-size: 0.9rem; margin-top: 5px; opacity: 0.8; }
+
+        /* --- NAVEGACIÓN --- */
+        .nav-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 15px; width: 100%; margin-bottom: 30px;
+        }
+        .nav-item {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: 12px; padding: 18px; text-decoration: none; color: white;
+            display: flex; align-items: center; justify-content: space-between;
+            transition: 0.3s; cursor: pointer; backdrop-filter: blur(10px);
+        }
+        .nav-item:hover { background: rgba(255,255,255,0.07); border-color: var(--primary); transform: translateY(-3px); }
+        .nav-active { border: 2px solid var(--primary); box-shadow: 0 0 15px rgba(138, 43, 226, 0.2); }
+
+        /* --- CONTENIDO (Secciones que se ocultan/muestran) --- */
+        .content-box {
+            width: 100%; background: var(--glass); border-radius: 20px;
+            border: 1px solid var(--glass-border); padding: 30px;
+            margin-bottom: 25px; display: none; /* Ocultos por defecto */
             backdrop-filter: blur(10px);
         }
-        .nav-btn:hover, .nav-active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+        .show { display: block; animation: fadeInUp 0.5s; }
+
+        .list-style { list-style: none; margin-top: 15px; }
+        .list-style li {
+            padding: 12px; background: rgba(0,0,0,0.3); border-radius: 8px;
+            margin-bottom: 8px; border-left: 4px solid var(--primary);
+            font-size: 0.9rem; display: flex; align-items: center; gap: 10px;
         }
 
-        /* --- PESTAÑAS DE CONTENIDO --- */
-        .tab-content {
-            display: none;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 30px;
-            min-height: 200px;
-            backdrop-filter: blur(15px);
-            animation: fadeIn 0.4s ease-out;
+        /* --- SECCIÓN DE BOTS (Diseño original mejorado) --- */
+        .bots-section {
+            width: 100%; background: var(--glass); border-radius: 20px;
+            border: 1px solid var(--glass-border); padding: 30px;
+            margin-bottom: 25px; display: flex; align-items: center;
+            gap: 30px; position: relative;
         }
-        .tab-content.active { display: block; }
+        .bots-content { flex: 1; }
+        .bot-item {
+            background: rgba(255, 255, 255, 0.02); padding: 10px 15px;
+            border-radius: 8px; border-left: 3px solid var(--primary);
+            font-size: 0.85rem; display: flex; align-items: center; gap: 12px;
+            transition: 0.3s ease; cursor: pointer; margin-bottom: 8px;
+        }
+        .bot-item:hover { background: rgba(138, 43, 226, 0.1); transform: translateX(8px); }
+        
+        .preview-container { width: 280px; display: flex; justify-content: center; }
+        .ticket-preview {
+            width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.4s;
+        }
+        .img-changing { opacity: 0; transform: scale(0.95); }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- ELEMENTOS DE DISEÑO (INFO/JAVA) --- */
-        .config-list { list-style: none; }
-        .config-item {
-            background: rgba(255,255,255,0.03);
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 3px solid var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
+        /* --- BARRA DE ESTADO --- */
+        .status-container {
+            width: 100%; background: rgba(0,0,0,0.4); border-radius: 50px;
+            padding: 12px 20px; border: 1px solid var(--glass-border);
+            margin-bottom: 25px; display: flex; align-items: center; gap: 15px;
         }
-        .config-item i { color: var(--accent); }
-
-        /* --- BOTS SECTION (Dentro de pestaña) --- */
-        .bots-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        .loading-bar-bg { flex: 1; height: 8px; background: #1a1a1a; border-radius: 10px; overflow: hidden; position: relative; }
+        .loading-bar-fill {
+            height: 100%; width: 40%;
+            background: linear-gradient(90deg, transparent, var(--violet-neon), transparent);
+            position: absolute; animation: slideBar 2s linear infinite;
         }
-        .bot-btn {
-            background: rgba(255,255,255,0.02);
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid transparent;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.85rem;
-        }
-        .bot-btn:hover { background: rgba(138, 43, 226, 0.1); border-color: var(--primary); }
-
-        .preview-box {
-            background: #000;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .preview-box img { width: 100%; height: auto; transition: 0.5s; }
-
-        /* --- FOOTER STATUS --- */
-        .system-status {
-            background: rgba(0,0,0,0.5);
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-        }
-        .pulse {
-            width: 8px; height: 8px; background: #38e038;
-            border-radius: 50%; box-shadow: 0 0 10px #38e038;
-            animation: pulse-green 2s infinite;
-        }
-        @keyframes pulse-green { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes slideBar { 0% { left: -40%; } 100% { left: 100%; } }
 
         @media (max-width: 768px) {
-            .bots-layout { grid-template-columns: 1fr; }
-            .nav-menu { flex-direction: column; }
+            .nav-grid { grid-template-columns: 1fr; }
+            .bots-section { flex-direction: column; }
+            .preview-container { width: 100%; }
         }
     </style>
 </head>
 <body>
 
     <div id="loader">
-        <i class="fas fa-microchip fa-spin fa-3x" style="color: var(--primary);"></i>
-        <div class="loading-text" id="loader-msg">Iniciando RawCode_OS...</div>
+        <i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--primary);"></i>
+        <p class="loading-text">CARGANDO PORTFOLIO...</p>
     </div>
-
-    <div class="bg-glow"></div>
 
     <div class="container animate__animated animate__fadeIn">
         
         <header class="header">
             <div class="avatar-wrapper">
                 <img src="https://i.imgur.com/ohuYhH3.png" alt="1fsi" class="avatar">
+                <div class="active-dot"></div>
             </div>
-            <h1>1fsi<span style="color: var(--primary);">.exe</span></h1>
-            <p class="tagline">// CONFIGURADOR DE SISTEMAS & DEVELOPER</p>
+            <h1>1fsi</h1>
+            <p class="tagline">Desarrollador & Configurador Profesional</p>
         </header>
 
-        <nav class="nav-menu">
-            <div class="nav-btn nav-active" onclick="openTab(event, 'main')"><i class="fas fa-terminal"></i> Main</div>
-            <div class="nav-btn" onclick="openTab(event, 'info')"><i class="fas fa-info-circle"></i> Info</div>
-            <div class="nav-btn" onclick="openTab(event, 'dev')"><i class="fas fa-code"></i> Proyectos</div>
-            <div class="nav-btn" onclick="openTab(event, 'contact')"><i class="fas fa-link"></i> Contacto</div>
-        </nav>
-
-        <div id="main" class="tab-content active">
-            <h3 style="margin-bottom:15px; color: var(--primary);">System_Root:~/inicio</h3>
-            <p style="color: #888; line-height: 1.6;">
-                Bienvenido al núcleo central de 1fsi. Especializado en la creación de ecosistemas digitales para Discord y Minecraft. 
-                Utiliza el menú superior para navegar por los módulos disponibles.
-            </p>
-            <div class="config-item" style="margin-top: 20px; border-left-color: #38e038;">
-                <i class="fas fa-check"></i> <span>Estado: Operativo y listo para nuevos encargos.</span>
+        <div class="nav-grid">
+            <div class="nav-item nav-active" id="btn-principal" onclick="showSection('principal', this)">
+                <span><i class="fas fa-home" style="color:#ff9900"></i> Principal</span>
+                <i class="fas fa-chevron-right"></i>
             </div>
+            <div class="nav-item" onclick="showSection('info', this)">
+                <span><i class="fas fa-info-circle" style="color:#ff00ff"></i> Información</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="nav-item" onclick="showSection('java', this)">
+                <span><i class="fab fa-java" style="color:#5382a1"></i> Java Dev</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="nav-item" onclick="showSection('bots-tab', this)">
+                <span><i class="fas fa-robot" style="color:#8a2be2"></i> Mis Bots</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <a href="https://discord.gg/SDXfPEuUuQ" target="_blank" class="nav-item" style="grid-column: span 2;">
+                <span><i class="fab fa-discord" style="color:#5865F2"></i> Contacto Directo (Discord)</span>
+                <i class="fas fa-external-link-alt"></i>
+            </a>
         </div>
 
-        <div id="info" class="tab-content">
-            <h3 style="margin-bottom:15px; color: var(--accent);">Especificaciones Técnicas</h3>
-            <div class="config-list">
-                <div class="config-item"><i class="fas fa-robot"></i> Configurador Experto de bots personalizados</div>
-                <div class="config-item"><i class="fas fa-bolt"></i> Modalidades Minecraft de alto rendimiento</div>
-                <div class="config-item"><i class="fas fa-layer-group"></i> Optimización masiva de Plugins</div>
-            </div>
+        <div id="principal" class="content-box show">
+            <h3>Bienvenido</h3>
+            <p style="color:#b9bbbe; margin-top:10px;">Selecciona una categoría para ver mis especialidades y servicios activos. Todo configurado profesionalmente.</p>
         </div>
 
-        <div id="dev" class="tab-content">
-            <h3 style="margin-bottom:15px; color: var(--primary);">Módulo de Bots (Discord)</h3>
-            <div class="bots-layout">
-                <div class="bot-selectors">
-                    <div class="bot-btn" onclick="updatePreview('https://imgur.com/ytWqc97.png')"><i class="fas fa-ticket-alt"></i> Tickets System</div>
-                    <div class="bot-btn" onclick="updatePreview('https://imgur.com/mPCJhyd.png')"><i class="fas fa-star"></i> Reviews System</div>
-                    <div class="bot-btn"><i class="fas fa-shield-halved"></i> Security Core</div>
-                    <div class="bot-btn"><i class="fas fa-coins"></i> Economy Module</div>
+        <div id="info" class="content-box">
+            <h3 style="color: #ff00ff;"><i class="fas fa-shield-alt"></i> Información</h3>
+            <ul class="list-style">
+                <li><i class="fas fa-check-circle"></i> Configurador Experto de bots personalizados</li>
+                <li><i class="fas fa-check-circle"></i> Configuración de modalidades de alto rendimiento</li>
+                <li><i class="fas fa-check-circle"></i> Especialista en optimización de Plugins</li>
+            </ul>
+        </div>
+
+        <div id="java" class="content-box">
+            <h3 style="color: #5382a1;"><i class="fas fa-code-branch"></i> Desarrollo Minecraft</h3>
+            <ul class="list-style">
+                <li><i class="fas fa-server"></i> Configurador De Plugins Minecraft</li>
+                <li><i class="fas fa-gamepad"></i> Configurador de modalidades técnicas</li>
+                <li><i class="fas fa-tools"></i> Desarrollador de modalidades personalizadas</li>
+            </ul>
+        </div>
+
+        <div id="bots-tab" class="content-box">
+            <div class="bots-section" style="background: none; border: none; padding: 0; margin-bottom: 0;">
+                <div class="bots-content">
+                    <h3 style="color: var(--accent); margin-bottom: 20px;"><i class="fas fa-robot"></i> Bots Creados</h3>
+                    <div class="bots-list">
+                        <div class="bot-item" onclick="changeBotImg('https://imgur.com/ytWqc97.png')"><i class="fas fa-ticket-alt"></i><span>Sistema de Tickets</span></div>
+                        <div class="bot-item" onclick="changeBotImg('https://imgur.com/mPCJhyd.png')"><i class="fas fa-star"></i><span>Sistema de Reseñas</span></div>
+                        <div class="bot-item"><i class="fas fa-lightbulb"></i><span>Sistema de Sugerencias</span></div>
+                        <div class="bot-item"><i class="fas fa-user-check"></i><span>Sistema de Verificaciones</span></div>
+                    </div>
                 </div>
-                <div class="preview-box">
-                    <img id="tab-preview" src="https://imgur.com/ytWqc97.png" alt="Preview">
+                <div class="preview-container">
+                    <img src="https://imgur.com/ytWqc97.png" alt="Vista Previa" class="ticket-preview" id="botPreviewImg">
                 </div>
             </div>
         </div>
 
-        <div id="contact" class="tab-content">
-            <h3 style="margin-bottom:15px; color: var(--accent);">Establecer Conexión</h3>
-            <div style="background: rgba(138, 43, 226, 0.05); border: 1px dashed var(--primary); padding: 30px; border-radius: 10px; text-align: center;">
-                <i class="fab fa-discord fa-3x" style="margin-bottom: 15px; color: #5865F2;"></i>
-                <h2 style="font-family: 'JetBrains Mono', monospace;">1fsi.</h2>
-                <p style="font-size: 0.8rem; margin-top: 10px; color: #666;">ID ÚNICA - DISCORD DEVELOPER</p>
-                <a href="https://discord.gg/SDXfPEuUuQ" target="_blank" style="display:inline-block; margin-top:20px; padding: 10px 25px; background: var(--primary); color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">UNIRSE AL SERVIDOR</a>
+        <div class="status-container">
+            <span style="font-size: 0.7rem; font-weight: 700; color: var(--violet-neon); text-transform: uppercase;">Sistema Activo</span>
+            <div class="loading-bar-bg">
+                <div class="loading-bar-fill"></div>
             </div>
-        </div>
-
-        <div class="system-status">
-            <div style="display:flex; align-items:center; gap:10px;">
-                <div class="pulse"></div>
-                <span>RAWCODE_KERNEL v3.0.4</span>
-            </div>
-            <span id="clock">00:00:00</span>
-            <span style="color: var(--primary);">CPU_LOAD: 12%</span>
         </div>
 
     </div>
 
     <script>
-        // Loader animado
-        window.addEventListener('load', () => {
-            const msgs = ["Cargando Scripts...", "Optimizando UI...", "Conectando al Kernel...", "Ready!"];
-            let i = 0;
-            const interval = setInterval(() => {
-                document.getElementById('loader-msg').innerText = msgs[i];
-                i++;
-                if(i >= msgs.length) {
-                    clearInterval(interval);
-                    document.getElementById('loader').style.opacity = '0';
-                    setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
-                }
-            }, 400);
-        });
-
-        // Cambio de Pestañas
-        function openTab(evt, tabName) {
-            let i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove("active");
-            }
-            tablinks = document.getElementsByClassName("nav-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("nav-active");
-            }
-            document.getElementById(tabName).style.display = "block";
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("nav-active");
+        // Función para cambiar de sección ocultando las demás
+        function showSection(sectionId, element) {
+            // Ocultar todas las cajas de contenido
+            document.querySelectorAll('.content-box').forEach(box => {
+                box.classList.remove('show');
+            });
+            // Quitar el estado activo de todos los botones
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('nav-active');
+            });
+            // Mostrar la seleccionada y marcar botón
+            document.getElementById(sectionId).classList.add('show');
+            element.classList.add('nav-active');
         }
 
-        // Cambio de Imagen en Preview
-        function updatePreview(url) {
-            const img = document.getElementById('tab-preview');
-            img.style.opacity = '0';
+        // Función para cambiar imagen de bots
+        function changeBotImg(url) {
+            const img = document.getElementById('botPreviewImg');
+            img.classList.add('img-changing');
             setTimeout(() => {
                 img.src = url;
-                img.style.opacity = '1';
-            }, 250);
+                img.classList.remove('img-changing');
+            }, 300);
         }
 
-        // Reloj en tiempo real
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('clock').innerText = now.toLocaleTimeString();
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
+        // Quitar el loader al cargar la página
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500);
+            }, 1000); // 1 segundo de carga
+        });
     </script>
 </body>
 </html>
