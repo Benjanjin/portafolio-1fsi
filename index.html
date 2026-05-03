@@ -11,36 +11,26 @@
 <style>
 :root {
   --primary: #7C3AED;
-  --accent: #06B6D4; 
-  --bg-dark: #080808;
-  --glass: rgba(255, 255, 255, 0.04);
-  --glass-border: rgba(255, 255, 255, 0.12);
+  --accent: #06B6D4;
+  --bg: #080808;
+  --glass: rgba(255,255,255,0.05);
+  --border: rgba(255,255,255,0.12);
 }
 
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-::selection {
-  background: #7C3AED;
-  color: white;
-}
+::selection{background:var(--primary);color:#fff;}
 
-body {
+body{
   background:
     radial-gradient(circle at 20% 30%, #1e0a3c 0%, transparent 40%),
     radial-gradient(circle at 80% 70%, #0a2540 0%, transparent 40%),
-    #080808;
+    var(--bg);
   color:white;
-  display:flex;
-  justify-content:center;
 }
 
 /* LOADER */
-#loader {
+#loader{
   position:fixed;
   inset:0;
   background:#080808;
@@ -52,156 +42,122 @@ body {
 }
 
 /* CONTAINER */
-.container {
-  width:100%;
+.container{
   max-width:850px;
-  padding:40px 20px;
+  margin:auto;
+  padding:30px 15px 40px;
 }
 
 /* HEADER */
-.header {
-  text-align:center;
-  margin-bottom:30px;
-}
+.header{text-align:center;margin-bottom:25px;}
 
-.avatar {
-  width:140px;
-  height:140px;
-  border-radius:50%;
+.avatar{
+  width:120px;height:120px;border-radius:50%;
   border:3px solid var(--primary);
-  padding:5px;
   transition:.4s;
 }
-.avatar:hover {
+.avatar:hover{
   transform:scale(1.05);
   box-shadow:0 0 25px rgba(124,58,237,.6);
 }
 
-h1 {
-  font-size:3rem;
-}
+h1{font-size:2.5rem;margin-top:10px;}
+.tagline{color:#aaa;font-size:.85rem;}
 
-.tagline {
-  color:#aaa;
-  font-size:.9rem;
-}
-
-/* NAV */
-.nav-grid {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin-bottom:25px;
-}
-
-.nav-item {
-  background:var(--glass);
-  border:1px solid var(--glass-border);
-  border-radius:12px;
-  padding:15px;
+/* NAV TABS */
+.nav-tabs{
   display:flex;
-  justify-content:space-between;
+  gap:10px;
+  overflow-x:auto;
+  margin:20px 0;
+  padding-bottom:10px;
+  scrollbar-width:none;
+  position:sticky;
+  top:0;
+  backdrop-filter:blur(10px);
+  z-index:10;
+}
+.nav-tabs::-webkit-scrollbar{display:none;}
+
+.nav-tab{
+  flex:0 0 auto;
+  padding:10px 16px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.05);
   cursor:pointer;
-  transition:.25s cubic-bezier(.4,0,.2,1);
+  font-size:.85rem;
+  transition:.25s;
+  white-space:nowrap;
 }
-
-.nav-item:hover {
-  transform:translateY(-4px) scale(1.02);
-  border-color:var(--primary);
+.nav-tab:hover{
+  background:rgba(124,58,237,.2);
 }
-
-.nav-active {
-  border-color:var(--primary);
-  background:rgba(124,58,237,0.2);
+.nav-tab.active{
+  background:linear-gradient(135deg,var(--primary),var(--accent));
 }
 
 /* CONTENT */
-.content-box {
+.content-box{
   display:none;
   background:var(--glass);
-  border:1px solid var(--glass-border);
-  border-radius:20px;
-  padding:30px;
-  margin-bottom:20px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:15px;
   box-shadow:0 10px 40px rgba(0,0,0,.4);
   animation:fadeUp .4s ease;
 }
+.show{display:block;}
 
-.show { display:block; }
-
-@keyframes fadeUp {
-  from {opacity:0; transform:translateY(15px);}
-  to {opacity:1; transform:translateY(0);}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(15px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
 /* LIST */
-.list-style {
-  margin-top:15px;
-}
-.list-style li {
+.list-style li{
   list-style:none;
   padding:10px;
   margin-bottom:8px;
   background:rgba(0,0,0,.3);
-  border-left:4px solid var(--primary);
-  border-radius:8px;
+  border-left:3px solid var(--primary);
+  border-radius:6px;
+  font-size:.85rem;
 }
 
 /* BOTS */
-.bots-layout {
+.bots-layout{
   display:flex;
-  gap:20px;
+  gap:15px;
 }
-.bot-item {
-  padding:10px;
+.bot-item{
+  padding:8px;
   cursor:pointer;
-  transition:.3s;
+  font-size:.85rem;
+  opacity:.8;
 }
-.bot-item:hover {
-  transform:translateX(5px);
-  color:var(--accent);
+.bot-item:hover{
+  opacity:1;
+  transform:translateX(4px);
 }
 
-.preview-img {
-  width:280px;
-  border-radius:12px;
+.preview-img{
+  width:260px;
+  border-radius:10px;
   transition:.3s;
 }
 
 /* STATUS */
-.status-container {
-  background:rgba(0,0,0,.4);
-  padding:12px;
-  border-radius:50px;
-  display:flex;
-  gap:10px;
-  align-items:center;
+.status{
+  margin-top:15px;
+  font-size:.7rem;
+  opacity:.6;
 }
 
-.loading-bar {
-  flex:1;
-  height:6px;
-  background:#111;
-  overflow:hidden;
-  border-radius:10px;
-}
-
-.bar-fill {
-  width:30%;
-  height:100%;
-  background:var(--primary);
-  animation:slide 2s linear infinite;
-}
-
-@keyframes slide {
-  0% {margin-left:-30%;}
-  100% {margin-left:100%;}
-}
-
+/* RESPONSIVE */
 @media(max-width:768px){
-  .nav-grid {grid-template-columns:1fr;}
-  .bots-layout {flex-direction:column;}
-  .preview-img {width:100%;}
+  .bots-layout{flex-direction:column;}
+  .preview-img{width:100%;}
 }
 </style>
 </head>
@@ -209,115 +165,108 @@ h1 {
 <body>
 
 <div id="loader">
-  <i class="fas fa-circle-notch fa-spin fa-2x" style="color:var(--primary)"></i>
+<i class="fas fa-circle-notch fa-spin fa-2x" style="color:var(--primary)"></i>
 </div>
 
 <div class="container">
 
 <header class="header">
-  <img src="https://i.imgur.com/ohuYhH3.png" class="avatar">
-  <h1>1fsi</h1>
-  <p class="tagline">Desarrollador & Configurador Profesional</p>
+<img src="https://i.imgur.com/ohuYhH3.png" class="avatar">
+<h1>1fsi</h1>
+<p class="tagline">Desarrollador & Configurador Profesional</p>
 </header>
 
-<div class="nav-grid">
-  <div class="nav-item nav-active" onclick="showTab('inicio', this)">Principal</div>
-  <div class="nav-item" onclick="showTab('info', this)">Info</div>
-  <div class="nav-item" onclick="showTab('java', this)">Java</div>
-  <div class="nav-item" onclick="showTab('bots', this)">Bots</div>
-  <div class="nav-item" onclick="showTab('plugins', this)">Plugins</div>
-  <div class="nav-item" onclick="showTab('servidores', this)">Servidores</div>
+<div class="nav-tabs">
+<div class="nav-tab active" onclick="showTab('inicio',this)">Inicio</div>
+<div class="nav-tab" onclick="showTab('info',this)">Info</div>
+<div class="nav-tab" onclick="showTab('java',this)">Java</div>
+<div class="nav-tab" onclick="showTab('bots',this)">Bots</div>
+<div class="nav-tab" onclick="showTab('plugins',this)">Plugins</div>
+<div class="nav-tab" onclick="showTab('servidores',this)">Servidores</div>
 </div>
 
 <div id="inicio" class="content-box show">
-  <h3>Bienvenido</h3>
-  <p style="opacity:.7;">Selecciona una categoría para ver mis trabajos.</p>
+<h3>Bienvenido</h3>
+<p style="opacity:.7;">Selecciona una categoría para explorar mi trabajo.</p>
 </div>
 
 <div id="info" class="content-box">
-  <h3>Especialidades</h3>
-  <ul class="list-style">
-    <li>Bots avanzados</li>
-    <li>Optimización de servidores</li>
-    <li>Seguridad</li>
-  </ul>
+<h3>Especialidades</h3>
+<ul class="list-style">
+<li>Bots avanzados</li>
+<li>Optimización de servidores</li>
+<li>Seguridad</li>
+</ul>
 </div>
 
 <div id="java" class="content-box">
-  <h3>Java Dev</h3>
-  <ul class="list-style">
-    <li>Plugins</li>
-    <li>Modalidades</li>
-    <li>Optimización TPS</li>
-  </ul>
+<h3>Java Dev</h3>
+<ul class="list-style">
+<li>Plugins personalizados</li>
+<li>Modalidades únicas</li>
+<li>Optimización TPS</li>
+</ul>
 </div>
 
 <div id="bots" class="content-box">
-  <div class="bots-layout">
-    <div>
-      <div class="bot-item" onclick="updateImg('https://imgur.com/ytWqc97.png')">Tickets</div>
-      <div class="bot-item" onclick="updateImg('https://imgur.com/mPCJhyd.png')">Reseñas</div>
-    </div>
-    <img id="prevImg" src="https://imgur.com/ytWqc97.png" class="preview-img">
-  </div>
+<div class="bots-layout">
+<div>
+<div class="bot-item" onclick="updateImg('https://imgur.com/ytWqc97.png')">Tickets</div>
+<div class="bot-item" onclick="updateImg('https://imgur.com/mPCJhyd.png')">Reseñas</div>
+</div>
+<img id="prevImg" src="https://imgur.com/ytWqc97.png" class="preview-img">
+</div>
 </div>
 
 <div id="plugins" class="content-box">
-  <div style="text-align:center">
-    <h3>Plugins Propios</h3>
-    <p style="opacity:.7;">Desarrollo de plugins exclusivos.</p>
-    <div style="margin-top:15px; border:1px dashed var(--primary); padding:10px; border-radius:10px;">
-      🚧 Próximamente
-    </div>
-  </div>
+<div style="text-align:center">
+<h3>Plugins Propios</h3>
+<p style="opacity:.7;">Herramientas en desarrollo.</p>
+<div style="margin-top:10px;border:1px dashed var(--primary);padding:10px;border-radius:10px;">
+🚧 Próximamente
+</div>
+</div>
 </div>
 
 <div id="servidores" class="content-box">
-  <h3>Servidores</h3>
-  <p style="opacity:.6;">Próximamente</p>
+<h3>Servidores</h3>
+<p style="opacity:.6;">Próximamente</p>
 </div>
 
-<div class="status-container">
-  <span style="font-size:.7rem; color:var(--primary)">SYSTEM ACTIVE</span>
-  <div class="loading-bar"><div class="bar-fill"></div></div>
-</div>
-
-<p style="margin-top:10px; font-size:.8rem; opacity:.6;">
-  Visitas: <span id="visitas">...</span>
-</p>
+<p class="status">Visitas: <span id="visitas">...</span></p>
 
 </div>
 
 <script>
-function showTab(id, btn){
-  document.querySelectorAll('.content-box').forEach(b=>b.classList.remove('show'));
-  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('nav-active'));
-  document.getElementById(id).classList.add('show');
-  btn.classList.add('nav-active');
+function showTab(id,btn){
+document.querySelectorAll('.content-box').forEach(b=>b.classList.remove('show'));
+document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
+document.getElementById(id).classList.add('show');
+btn.classList.add('active');
 }
 
 function updateImg(url){
-  let img=document.getElementById('prevImg');
-  img.style.opacity=0;
-  setTimeout(()=>{
-    img.src=url;
-    img.style.opacity=1;
-  },200);
+let img=document.getElementById('prevImg');
+img.style.opacity=0;
+setTimeout(()=>{
+img.src=url;
+img.style.opacity=1;
+},200);
 }
 
 fetch('https://api.countapi.xyz/hit/1fsi/visitas')
 .then(res=>res.json())
 .then(data=>{
-  document.getElementById("visitas").innerText=data.value;
+document.getElementById("visitas").innerText=data.value;
 });
 
 window.onload=()=>{
-  setTimeout(()=>{
-    document.getElementById('loader').style.opacity=0;
-    setTimeout(()=>document.getElementById('loader').style.display='none',500);
-  },700);
+setTimeout(()=>{
+document.getElementById('loader').style.opacity=0;
+setTimeout(()=>document.getElementById('loader').style.display='none',500);
+},600);
 }
 </script>
 
 </body>
-      </html>
+  </html>
