@@ -42,15 +42,57 @@
             padding: 40px 20px; display: flex; flex-direction: column; align-items: center;
         }
 
-        /* --- HEADER --- */
-        .header { text-align: center; margin-bottom: 30px; }
-        .avatar {
-            width: 140px; height: 140px; border-radius: 50%;
-            border: 3px solid var(--primary); padding: 5px; background: var(--bg-dark);
-            margin-bottom: 15px;
+        /* --- HEADER MEJORADO --- */
+        .header { text-align: center; margin-bottom: 30px; position: relative; }
+        
+        .avatar-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
         }
-        h1 { font-size: 3rem; font-weight: 800; letter-spacing: -2px; }
-        .tagline { color: #b9bbbe; font-size: 0.9rem; opacity: 0.8; }
+
+        .avatar {
+            width: 100%; height: 100%; border-radius: 50%;
+            border: 3px solid var(--primary); padding: 5px; background: var(--bg-dark);
+            position: relative; z-index: 2;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .avatar-container::after {
+            content: ''; position: absolute; inset: -5px;
+            border-radius: 50%; background: var(--primary);
+            filter: blur(15px); opacity: 0.3; z-index: 1;
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.6; }
+            100% { transform: scale(1); opacity: 0.3; }
+        }
+
+        h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; text-shadow: 0 0 20px rgba(138, 43, 226, 0.5); }
+        .tagline { color: #b9bbbe; font-size: 0.9rem; opacity: 0.8; margin-top: 5px; }
+
+        /* --- NUEVO: STATS MENU --- */
+        .stats-row {
+            display: flex; gap: 15px; width: 100%; margin-bottom: 25px;
+        }
+        .stat-card {
+            flex: 1; background: var(--glass); border: 1px solid var(--glass-border);
+            padding: 15px; border-radius: 15px; text-align: center;
+            backdrop-filter: blur(5px); transition: 0.3s;
+        }
+        .stat-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .stat-num { display: block; font-size: 1.5rem; font-weight: 700; color: var(--accent); font-family: 'JetBrains Mono'; }
+        .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #888; }
 
         /* --- NAVEGACIÓN --- */
         .nav-grid {
@@ -62,17 +104,25 @@
             border-radius: 12px; padding: 15px 20px; text-decoration: none; color: white;
             display: flex; align-items: center; justify-content: space-between;
             transition: 0.3s; cursor: pointer; backdrop-filter: blur(10px);
+            position: relative; overflow: hidden;
         }
-        .nav-item:hover { background: rgba(255,255,255,0.07); border-color: var(--primary); transform: translateY(-2px); }
-        .nav-active { border-color: var(--primary); background: rgba(138, 43, 226, 0.15); box-shadow: 0 0 15px rgba(138, 43, 226, 0.2); }
+        .nav-item::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.5s;
+        }
+        .nav-item:hover::before { left: 100%; }
+        .nav-item:hover { background: rgba(255,255,255,0.07); border-color: var(--primary); transform: scale(1.02); }
+        .nav-active { border-color: var(--primary); background: rgba(138, 43, 226, 0.15); box-shadow: 0 0 20px rgba(138, 43, 226, 0.2); }
 
         /* --- SECCIONES --- */
         .content-box {
             width: 100%; background: var(--glass); border-radius: 20px;
             border: 1px solid var(--glass-border); padding: 30px;
             margin-bottom: 25px; display: none; backdrop-filter: blur(10px);
-            animation: fadeIn 0.4s ease;
+            animation: slideUp 0.4s ease;
         }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .show { display: block; }
 
         .list-style { list-style: none; margin-top: 15px; }
@@ -80,16 +130,18 @@
             padding: 12px; background: rgba(0,0,0,0.25); border-radius: 8px;
             margin-bottom: 8px; border-left: 4px solid var(--primary);
             display: flex; align-items: center; gap: 10px; font-size: 0.9rem;
+            transition: 0.3s;
         }
+        .list-style li:hover { transform: translateX(10px); background: rgba(138, 43, 226, 0.1); }
 
         /* --- BOTS DISPLAY --- */
         .bots-layout { display: flex; gap: 25px; align-items: center; }
         .bot-item {
-            background: rgba(255,255,255,0.03); padding: 10px 15px; border-radius: 8px;
-            margin-bottom: 8px; cursor: pointer; transition: 0.3s; border: 1px solid transparent;
+            background: rgba(255,255,255,0.03); padding: 12px 18px; border-radius: 8px;
+            margin-bottom: 10px; cursor: pointer; transition: 0.3s; border: 1px solid transparent;
         }
-        .bot-item:hover { background: rgba(138, 43, 226, 0.1); border-color: var(--primary); transform: translateX(5px); }
-        .preview-img { width: 280px; border-radius: 12px; border: 1px solid var(--glass-border); transition: 0.3s; }
+        .bot-item:hover { background: rgba(138, 43, 226, 0.2); border-color: var(--primary); transform: translateX(5px); }
+        .preview-img { width: 280px; border-radius: 12px; border: 1px solid var(--glass-border); transition: 0.5s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 
         /* --- STATUS BAR --- */
         .status-container {
@@ -99,13 +151,15 @@
         }
         .loading-bar { flex: 1; height: 6px; background: #1a1a1a; border-radius: 10px; overflow: hidden; position: relative; }
         .bar-fill {
-            height: 100%; width: 30%; background: var(--violet-neon);
+            height: 100%; width: 30%; background: linear-gradient(90deg, var(--primary), var(--accent));
             position: absolute; animation: slide 2s linear infinite;
         }
         @keyframes slide { 0% { left: -30%; } 100% { left: 100%; } }
 
         @media (max-width: 768px) {
             .nav-grid { grid-template-columns: 1fr; }
+            .stats-row { flex-wrap: wrap; }
+            .stat-card { min-width: 45%; }
             .bots-layout { flex-direction: column; }
             .preview-img { width: 100%; }
         }
@@ -114,16 +168,34 @@
 <body>
 
     <div id="loader">
-        <i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--primary);"></i>
+        <i class="fas fa-circle-notch fa-spin fa-3x" style="color: var(--primary);"></i>
+        <p style="margin-top: 15px; letter-spacing: 3px; font-size: 0.8rem;">CARGANDO EXPERIENCIA</p>
     </div>
 
     <div class="container">
         
         <header class="header">
-            <img src="https://i.imgur.com/ohuYhH3.png" alt="1fsi" class="avatar">
+            <div class="avatar-container">
+                <img src="https://i.imgur.com/ohuYhH3.png" alt="1fsi" class="avatar">
+            </div>
             <h1>1fsi</h1>
             <p class="tagline">Desarrollador & Configurador Profesional</p>
         </header>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <span class="stat-num" id="visitCount">1,240</span>
+                <span class="stat-label">Visitantes</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num">+45</span>
+                <span class="stat-label">Compradores</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num">12</span>
+                <span class="stat-label">Proyectos</span>
+            </div>
+        </div>
 
         <div class="nav-grid">
             <div class="nav-item nav-active" onclick="showTab('inicio', this)">
@@ -146,15 +218,20 @@
                 <span><i class="fas fa-server" style="color:#00ffcc"></i> Servidores Configurados</span>
                 <i class="fas fa-chevron-right"></i>
             </div>
-            <a href="https://discord.gg/SDXfPEuUuQ" target="_blank" class="nav-item" style="grid-column: span 2;">
+            <a href="https://discord.gg/SDXfPEuUuQ" target="_blank" class="nav-item" style="grid-column: span 2; background: rgba(88, 101, 242, 0.1);">
                 <span><i class="fab fa-discord" style="color:#5865F2"></i> Contacto Directo</span>
                 <i class="fas fa-external-link-alt"></i>
             </a>
         </div>
 
         <div id="inicio" class="content-box show">
-            <h3>Bienvenido</h3>
-            <p style="color:#b9bbbe; margin-top:10px;">Selecciona una categoría arriba para ver mis trabajos realizados y servicios disponibles.</p>
+            <h3 style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-terminal" style="color: var(--primary);"></i> Bienvenido
+            </h3>
+            <p style="color:#b9bbbe; margin-top:10px; line-height: 1.6;">
+                Soy Benjamin, especializado en la creación de ecosistemas digitales en Discord y Minecraft. 
+                Explora las secciones para ver mi portafolio técnico.
+            </p>
         </div>
 
         <div id="info" class="content-box">
@@ -179,9 +256,9 @@
             <div class="bots-layout">
                 <div style="flex:1">
                     <h3 style="margin-bottom:15px;"><i class="fas fa-robot"></i> Mis Bots</h3>
-                    <div class="bot-item" onclick="updateImg('https://imgur.com/ytWqc97.png')"><i class="fas fa-ticket-alt"></i> Tickets</div>
-                    <div class="bot-item" onclick="updateImg('https://imgur.com/mPCJhyd.png')"><i class="fas fa-star"></i> Reseñas</div>
-                    <div class="bot-item"><i class="fas fa-lightbulb"></i> Sugerencias</div>
+                    <div class="bot-item" onclick="updateImg('https://imgur.com/ytWqc97.png')"><i class="fas fa-ticket-alt" style="color: #00d4ff;"></i> Sistema de Tickets</div>
+                    <div class="bot-item" onclick="updateImg('https://imgur.com/mPCJhyd.png')"><i class="fas fa-star" style="color: #ffcc00;"></i> Sistema de Reseñas</div>
+                    <div class="bot-item" onclick="updateImg('https://i.imgur.com/ohuYhH3.png')"><i class="fas fa-lightbulb" style="color: #00ffcc;"></i> Sugerencias & Feedback</div>
                 </div>
                 <div>
                     <img id="prevImg" src="https://imgur.com/ytWqc97.png" class="preview-img">
@@ -191,37 +268,74 @@
 
         <div id="servidores" class="content-box">
             <div style="text-align: center; padding: 20px;">
-                <i class="fas fa-tools fa-3x" style="color: var(--primary); margin-bottom: 15px;"></i>
+                <i class="fas fa-tools fa-3x" style="color: var(--primary); margin-bottom: 15px; animation: rotate 4s infinite linear;"></i>
                 <h3 style="letter-spacing: 2px;">PROXIMAMENTE</h3>
-                <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">Esta sección está bajo mantenimiento. Pronto verás los servidores configurados aquí.</p>
+                <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">Esta sección está bajo mantenimiento para mostrar mis últimos setups de Minecraft.</p>
             </div>
         </div>
 
         <div class="status-container">
-            <span style="font-size: 0.7rem; font-weight: 700; color: var(--violet-neon);">RAWCODE SYSTEM ACTIVE</span>
+            <span style="font-size: 0.7rem; font-weight: 700; color: var(--violet-neon); white-space: nowrap;">RAWCODE OS v2.0</span>
             <div class="loading-bar"><div class="bar-fill"></div></div>
         </div>
 
     </div>
 
     <script>
+        // Animación de cambio de pestaña
         function showTab(id, btn) {
-            document.querySelectorAll('.content-box').forEach(b => b.classList.remove('show'));
+            const boxes = document.querySelectorAll('.content-box');
+            boxes.forEach(b => {
+                b.style.opacity = '0';
+                b.classList.remove('show');
+            });
+            
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('nav-active'));
-            document.getElementById(id).classList.add('show');
+            
+            setTimeout(() => {
+                const activeBox = document.getElementById(id);
+                activeBox.classList.add('show');
+                activeBox.style.opacity = '1';
+            }, 50);
+            
             btn.classList.add('nav-active');
         }
 
+        // Cambio de imagen con efecto suave
         function updateImg(url) {
             const img = document.getElementById('prevImg');
+            img.style.transform = 'scale(0.8) rotate(-5deg)';
             img.style.opacity = '0';
-            setTimeout(() => { img.src = url; img.style.opacity = '1'; }, 200);
+            
+            setTimeout(() => { 
+                img.src = url; 
+                img.style.transform = 'scale(1) rotate(0deg)';
+                img.style.opacity = '1'; 
+            }, 300);
+        }
+
+        // Simulación de contador de visitantes
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
         }
 
         window.onload = () => {
+            // Quitar Loader
             setTimeout(() => {
                 document.getElementById('loader').style.opacity = '0';
                 setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
+                
+                // Iniciar contadores
+                animateValue(document.getElementById('visitCount'), 0, 1240, 2000);
             }, 800);
         };
     </script>
