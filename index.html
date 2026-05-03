@@ -1,211 +1,229 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1fsi | Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-<style>
-:root {
-  --primary: #7C3AED;
-  --accent: #06B6D4;
-  --bg: #080808;
-  --glass: rgba(255,255,255,0.05);
-  --border: rgba(255,255,255,0.12);
-}
-
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-
-body{
-  background:
-    radial-gradient(circle at 20% 30%, #1e0a3c 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, #0a2540 0%, transparent 40%),
-    var(--bg);
-  color:white;
-  overflow-x:hidden;
-}
-
-#loader{
-  position:fixed;
-  inset:0;
-  background:#080808;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-  transition:.5s;
-}
-
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:30px 15px 50px;
-}
-
-.hero{text-align:center;margin-bottom:25px;}
-
-.avatar{
-  width:120px;height:120px;border-radius:50%;
-  border:3px solid var(--primary);
-}
-
-h1{font-size:2.6rem;margin-top:10px;}
-.tagline{color:#aaa;font-size:.9rem;}
-
-/* PROMO */
-.promo-box{
-  background:linear-gradient(145deg,#12071f,#0a0a0a);
-  border:1px solid rgba(124,58,237,0.4);
-  border-radius:20px;
-  padding:25px;
-  text-align:center;
-  margin-bottom:25px;
-}
-
-.promo-badge{
-  background:#ff3b3b;
-  padding:6px 14px;
-  border-radius:20px;
-  font-size:.75rem;
-}
-
-.countdown{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin-top:10px;
-}
-
-.countdown div{
-  background:#000;
-  border-radius:10px;
-  padding:10px;
-}
-
-/* SKILLS */
-.skills-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-bottom:25px;
-}
-
-.skill{
-  background:#0f0f0f;
-  padding:15px;
-  border-radius:12px;
-  text-align:center;
-}
-
-/* NAV */
-.nav-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-}
-
-.nav-item{
-  background:var(--glass);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:15px;
-  text-align:center;
-  cursor:pointer;
-}
-
-.nav-active{
-  background:linear-gradient(135deg,var(--primary),var(--accent));
-}
-
-/* CONTENT */
-.content-box{
-  display:none;
-  margin-top:15px;
-}
-.show{display:block;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1fsi | Portfolio</title>
+ 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+ 
+    <style>
+        :root {
+            --primary: #8a2be2;
+            --accent: #00d4ff;
+            --bg-dark: #080808;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --violet-neon: #8a2be2;
+        }
+ 
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+ 
+        body {
+            background: radial-gradient(circle at 50% 50%, #1a0b2e 0%, #080808 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+ 
+        /* --- LOADER --- */
+        #loader {
+            position: fixed; inset: 0; background: #080808; z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: 0.5s;
+        }
+ 
+        .container {
+            position: relative; z-index: 10; width: 100%; max-width: 850px;
+            padding: 40px 20px; display: flex; flex-direction: column; align-items: center;
+        }
+ 
+        /* --- HEADER --- */
+        .header { text-align: center; margin-bottom: 30px; }
+        .avatar {
+            width: 140px; height: 140px; border-radius: 50%;
+            border: 3px solid var(--primary); padding: 5px; background: var(--bg-dark);
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 3rem; font-weight: 800; letter-spacing: -2px; }
+        .tagline { color: #b9bbbe; font-size: 0.9rem; opacity: 0.8; }
+ 
+        /* --- NAVEGACIÓN --- */
+        .nav-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr);
+            gap: 12px; width: 100%; margin-bottom: 25px;
+        }
+        .nav-item {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            border-radius: 12px; padding: 15px 20px; text-decoration: none; color: white;
+            display: flex; align-items: center; justify-content: space-between;
+            transition: 0.3s; cursor: pointer; backdrop-filter: blur(10px);
+        }
+        .nav-item:hover { background: rgba(255,255,255,0.07); border-color: var(--primary); transform: translateY(-2px); }
+        .nav-active { border-color: var(--primary); background: rgba(138, 43, 226, 0.15); box-shadow: 0 0 15px rgba(138, 43, 226, 0.2); }
+ 
+        /* --- SECCIONES --- */
+        .content-box {
+            width: 100%; background: var(--glass); border-radius: 20px;
+            border: 1px solid var(--glass-border); padding: 30px;
+            margin-bottom: 25px; display: none; backdrop-filter: blur(10px);
+            animation: fadeIn 0.4s ease;
+        }
+        .show { display: block; }
+ 
+        .list-style { list-style: none; margin-top: 15px; }
+        .list-style li {
+            padding: 12px; background: rgba(0,0,0,0.25); border-radius: 8px;
+            margin-bottom: 8px; border-left: 4px solid var(--primary);
+            display: flex; align-items: center; gap: 10px; font-size: 0.9rem;
+        }
+ 
+        /* --- BOTS DISPLAY --- */
+        .bots-layout { display: flex; gap: 25px; align-items: center; }
+        .bot-item {
+            background: rgba(255,255,255,0.03); padding: 10px 15px; border-radius: 8px;
+            margin-bottom: 8px; cursor: pointer; transition: 0.3s; border: 1px solid transparent;
+        }
+        .bot-item:hover { background: rgba(138, 43, 226, 0.1); border-color: var(--primary); transform: translateX(5px); }
+        .preview-img { width: 280px; border-radius: 12px; border: 1px solid var(--glass-border); transition: 0.3s; }
+ 
+        /* --- STATUS BAR --- */
+        .status-container {
+            width: 100%; background: rgba(0,0,0,0.4); border-radius: 50px;
+            padding: 12px 20px; border: 1px solid var(--glass-border);
+            display: flex; align-items: center; gap: 15px;
+        }
+        .loading-bar { flex: 1; height: 6px; background: #1a1a1a; border-radius: 10px; overflow: hidden; position: relative; }
+        .bar-fill {
+            height: 100%; width: 30%; background: var(--violet-neon);
+            position: absolute; animation: slide 2s linear infinite;
+        }
+        @keyframes slide { 0% { left: -30%; } 100% { left: 100%; } }
+ 
+        @media (max-width: 768px) {
+            .nav-grid { grid-template-columns: 1fr; }
+            .bots-layout { flex-direction: column; }
+            .preview-img { width: 100%; }
+        }
+    </style>
 </head>
-
 <body>
-
-<div id="loader">
-<i class="fas fa-circle-notch fa-spin fa-2x"></i>
-</div>
-
-<div class="container">
-
-<div class="hero">
-<img src="https://i.imgur.com/ohuYhH3.png" class="avatar">
-<h1>1fsi</h1>
-<p class="tagline">Desarrollador</p>
-</div>
-
-<div class="promo-box">
-<div class="promo-badge">🚀 DISPONIBLE</div>
-<h2>Freelance Abierto</h2>
-
-<div class="countdown">
-<div><span id="d">00</span></div>
-<div><span id="h">00</span></div>
-<div><span id="m">00</span></div>
-<div><span id="s">00</span></div>
-</div>
-</div>
-
-<div class="skills-grid">
-<div class="skill">Java</div>
-<div class="skill">Bots</div>
-<div class="skill">Plugins</div>
-<div class="skill">Hosting</div>
-<div class="skill">Seguridad</div>
-<div class="skill">+</div>
-</div>
-
-<div class="nav-grid">
-<div class="nav-item nav-active" onclick="showTab('inicio',this)">Inicio</div>
-<div class="nav-item" onclick="showTab('info',this)">Info</div>
-</div>
-
-<div id="inicio" class="content-box show">
-<p>Bienvenido</p>
-</div>
-
-<div id="info" class="content-box">
-<p>Mis servicios</p>
-</div>
-
-</div>
-
-<script>
-function showTab(id,btn){
-document.querySelectorAll('.content-box').forEach(b=>b.classList.remove('show'));
-document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('nav-active'));
-document.getElementById(id).classList.add('show');
-btn.classList.add('nav-active');
-}
-
-const endDate = new Date();
-endDate.setHours(endDate.getHours() + 48);
-
-setInterval(()=>{
-const now = new Date();
-const diff = endDate - now;
-
-document.getElementById("d").innerText = Math.floor(diff/86400000);
-document.getElementById("h").innerText = Math.floor(diff/3600000)%24;
-document.getElementById("m").innerText = Math.floor(diff/60000)%60;
-document.getElementById("s").innerText = Math.floor(diff/1000)%60;
-},1000);
-
-window.onload=()=>{
-setTimeout(()=>{
-document.getElementById('loader').style.display='none';
-},500);
-}
-</script>
-
+ 
+    <div id="loader">
+        <i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--primary);"></i>
+    </div>
+ 
+    <div class="container">
+ 
+        <header class="header">
+            <img src="https://i.imgur.com/ohuYhH3.png" alt="1fsi" class="avatar">
+            <h1>1fsi</h1>
+            <p class="tagline">Desarrollador & Configurador Profesional</p>
+        </header>
+ 
+        <div class="nav-grid">
+            <div class="nav-item nav-active" onclick="showTab('inicio', this)">
+                <span><i class="fas fa-home" style="color:#ff9900"></i> Principal</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="nav-item" onclick="showTab('info', this)">
+                <span><i class="fas fa-info-circle" style="color:#ff00ff"></i> Información</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="nav-item" onclick="showTab('java', this)">
+                <span><i class="fab fa-java" style="color:#5382a1"></i> Java Dev</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="nav-item" onclick="showTab('bots', this)">
+                <span><i class="fas fa-robot" style="color:#8a2be2"></i> Mis Bots</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="nav-item" style="grid-column: span 2;" onclick="showTab('servidores', this)">
+                <span><i class="fas fa-server" style="color:#00ffcc"></i> Servidores Configurados</span>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <a href="https://discord.gg/SDXfPEuUuQ" target="_blank" class="nav-item" style="grid-column: span 2;">
+                <span><i class="fab fa-discord" style="color:#5865F2"></i> Contacto Directo</span>
+                <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
+ 
+        <div id="inicio" class="content-box show">
+            <h3>Bienvenido</h3>
+            <p style="color:#b9bbbe; margin-top:10px;">Selecciona una categoría arriba para ver mis trabajos realizados y servicios disponibles.</p>
+        </div>
+ 
+        <div id="info" class="content-box">
+            <h3 style="color: #ff00ff;"><i class="fas fa-shield-alt"></i> Especialidades</h3>
+            <ul class="list-style">
+                <li><i class="fas fa-check-circle"></i> Configuración de Bots de alta gama</li>
+                <li><i class="fas fa-check-circle"></i> Optimización masiva de Servidores</li>
+                <li><i class="fas fa-check-circle"></i> Seguridad y protección contra ataques</li>
+            </ul>
+        </div>
+ 
+        <div id="java" class="content-box">
+            <h3 style="color: #5382a1;"><i class="fas fa-code-branch"></i> Desarrollo Java</h3>
+            <ul class="list-style">
+                <li><i class="fas fa-code"></i> Configuración técnica de Plugins</li>
+                <li><i class="fas fa-cubes"></i> Creación de modalidades personalizadas</li>
+                <li><i class="fas fa-microchip"></i> Optimización de rendimiento (TPS)</li>
+            </ul>
+        </div>
+ 
+        <div id="bots" class="content-box">
+            <div class="bots-layout">
+                <div style="flex:1">
+                    <h3 style="margin-bottom:15px;"><i class="fas fa-robot"></i> Mis Bots</h3>
+                    <div class="bot-item" onclick="updateImg('https://imgur.com/ytWqc97.png')"><i class="fas fa-ticket-alt"></i> Tickets</div>
+                    <div class="bot-item" onclick="updateImg('https://imgur.com/mPCJhyd.png')"><i class="fas fa-star"></i> Reseñas</div>
+                    <div class="bot-item"><i class="fas fa-lightbulb"></i> Sugerencias</div>
+                </div>
+                <div>
+                    <img id="prevImg" src="https://imgur.com/ytWqc97.png" class="preview-img">
+                </div>
+            </div>
+        </div>
+ 
+        <div id="servidores" class="content-box">
+            <div style="text-align: center; padding: 20px;">
+                <i class="fas fa-tools fa-3x" style="color: var(--primary); margin-bottom: 15px;"></i>
+                <h3 style="letter-spacing: 2px;">PROXIMAMENTE</h3>
+                <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">Esta sección está bajo mantenimiento. Pronto verás los servidores configurados aquí.</p>
+            </div>
+        </div>
+ 
+        <div class="status-container">
+            <span style="font-size: 0.7rem; font-weight: 700; color: var(--violet-neon);">RAWCODE SYSTEM ACTIVE</span>
+            <div class="loading-bar"><div class="bar-fill"></div></div>
+        </div>
+ 
+    </div>
+ 
+    <script>
+        function showTab(id, btn) {
+            document.querySelectorAll('.content-box').forEach(b => b.classList.remove('show'));
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('nav-active'));
+            document.getElementById(id).classList.add('show');
+            btn.classList.add('nav-active');
+        }
+ 
+        function updateImg(url) {
+            const img = document.getElementById('prevImg');
+            img.style.opacity = '0';
+            setTimeout(() => { img.src = url; img.style.opacity = '1'; }, 200);
+        }
+ 
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
+            }, 800);
+        };
+    </script>
 </body>
-  </html>
+                        </html>
