@@ -1,287 +1,323 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1fsi | Portfolio</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1fsi | Portfolio</title>
 
-    <style>
-        :root {
-            --primary: #8a2be2;
-            --accent: #00d4ff;
-            --bg-dark: #080808;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+<style>
+:root {
+  --primary: #7C3AED;
+  --accent: #06B6D4;
+  --bg-dark: #080808;
+  --glass: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.12);
+}
 
-        body {
-            background: radial-gradient(circle at 50% 50%, #1a0b2e 0%, #080808 100%);
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            overflow-x: hidden;
-        }
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
 
-        #loader {
-            position: fixed; inset: 0; background: #080808; z-index: 9999;
-            display: flex; justify-content: center; align-items: center;
-            transition: 0.5s;
-        }
+::selection {
+  background: #7C3AED;
+  color: white;
+}
 
-        .container {
-            position: relative; z-index: 10; width: 100%; max-width: 850px;
-            padding: 40px 20px; display: flex; flex-direction: column; align-items: center;
-        }
+body {
+  background:
+    radial-gradient(circle at 20% 30%, #1e0a3c 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #0a2540 0%, transparent 40%),
+    #080808;
+  color:white;
+  display:flex;
+  justify-content:center;
+}
 
-        /* --- AVATAR ANIMADO --- */
-        .avatar-frame {
-            position: relative;
-            width: 145px; height: 145px;
-            margin-bottom: 15px;
-        }
-        .avatar {
-            width: 100%; height: 100%; border-radius: 50%;
-            border: 3px solid var(--primary); padding: 5px; background: var(--bg-dark);
-            position: relative; z-index: 5;
-            animation: bounce 3s ease-in-out infinite;
-        }
-        .avatar-glow {
-            position: absolute; inset: 0; border-radius: 50%;
-            background: var(--primary); filter: blur(20px);
-            opacity: 0.4; animation: pulse 2s infinite;
-        }
+/* LOADER */
+#loader {
+  position:fixed;
+  inset:0;
+  background:#080808;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  transition:.5s;
+}
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.2; }
-            50% { transform: scale(1.1); opacity: 0.5; }
-            100% { transform: scale(0.95); opacity: 0.2; }
-        }
+/* CONTAINER */
+.container {
+  width:100%;
+  max-width:850px;
+  padding:40px 20px;
+}
 
-        h1 { font-size: 3rem; font-weight: 800; letter-spacing: -1px; }
+/* HEADER */
+.header {
+  text-align:center;
+  margin-bottom:30px;
+}
 
-        /* --- MENU DE NÚMEROS (Vistantes/Compradores) --- */
-        .stats-menu {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 10px; width: 100%; margin: 20px 0;
-        }
-        .stat-box {
-            background: var(--glass); border: 1px solid var(--glass-border);
-            padding: 15px; border-radius: 15px; text-align: center;
-            backdrop-filter: blur(5px);
-        }
-        .stat-box i { font-size: 1.2rem; color: var(--primary); margin-bottom: 5px; display: block; }
-        .stat-val { font-family: 'JetBrains Mono'; font-size: 1.4rem; font-weight: 700; color: #fff; }
-        .stat-txt { font-size: 0.65rem; text-transform: uppercase; color: #777; font-weight: 600; }
+.avatar {
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  border:3px solid var(--primary);
+  padding:5px;
+  transition:.4s;
+}
+.avatar:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 25px rgba(124,58,237,.6);
+}
 
-        /* --- NAVEGACIÓN --- */
-        .nav-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 12px; width: 100%; margin-bottom: 25px;
-        }
-        .nav-item {
-            background: var(--glass); border: 1px solid var(--glass-border);
-            border-radius: 12px; padding: 15px 20px; text-decoration: none; color: white;
-            display: flex; align-items: center; justify-content: space-between;
-            transition: 0.3s; cursor: pointer;
-        }
-        .nav-item:hover { background: rgba(255,255,255,0.07); border-color: var(--primary); transform: translateY(-2px); }
-        .nav-active { border-color: var(--primary); background: rgba(138, 43, 226, 0.15); }
+h1 {
+  font-size:3rem;
+}
 
-        /* --- SECCIONES --- */
-        .content-box {
-            width: 100%; background: var(--glass); border-radius: 20px;
-            border: 1px solid var(--glass-border); padding: 30px;
-            margin-bottom: 25px; display: none;
-        }
-        .show { display: block; animation: fadeIn 0.4s ease; }
+.tagline {
+  color:#aaa;
+  font-size:.9rem;
+}
 
-        .list-style { list-style: none; margin-top: 15px; }
-        .list-style li {
-            padding: 12px; background: rgba(0,0,0,0.25); border-radius: 8px;
-            margin-bottom: 8px; border-left: 4px solid var(--primary);
-            display: flex; align-items: center; gap: 10px; font-size: 0.9rem;
-        }
+/* NAV */
+.nav-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-bottom:25px;
+}
 
-        .bots-layout { display: flex; gap: 25px; align-items: center; }
-        .bot-item {
-            background: rgba(255,255,255,0.03); padding: 10px 15px; border-radius: 8px;
-            margin-bottom: 8px; cursor: pointer; transition: 0.2s;
-        }
-        .bot-item:hover { background: rgba(138, 43, 226, 0.2); transform: translateX(5px); }
-        .preview-img { width: 280px; border-radius: 12px; transition: 0.3s; }
+.nav-item {
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:12px;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+  cursor:pointer;
+  transition:.25s cubic-bezier(.4,0,.2,1);
+}
 
-        .status-container {
-            width: 100%; background: rgba(0,0,0,0.4); border-radius: 50px;
-            padding: 12px 20px; border: 1px solid var(--glass-border);
-            display: flex; align-items: center; gap: 15px;
-        }
-        .loading-bar { flex: 1; height: 6px; background: #1a1a1a; border-radius: 10px; overflow: hidden; position: relative; }
-        .bar-fill {
-            height: 100%; width: 30%; background: var(--primary);
-            position: absolute; animation: slide 2s linear infinite;
-        }
-        @keyframes slide { 0% { left: -30%; } 100% { left: 100%; } }
+.nav-item:hover {
+  transform:translateY(-4px) scale(1.02);
+  border-color:var(--primary);
+}
 
-        @media (max-width: 768px) {
-            .nav-grid { grid-template-columns: 1fr; }
-            .bots-layout { flex-direction: column; }
-            .preview-img { width: 100%; }
-        }
-    </style>
+.nav-active {
+  border-color:var(--primary);
+  background:rgba(124,58,237,0.2);
+}
+
+/* CONTENT */
+.content-box {
+  display:none;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:20px;
+  padding:30px;
+  margin-bottom:20px;
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
+  animation:fadeUp .4s ease;
+}
+
+.show { display:block; }
+
+@keyframes fadeUp {
+  from {opacity:0; transform:translateY(15px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+/* LIST */
+.list-style {
+  margin-top:15px;
+}
+.list-style li {
+  list-style:none;
+  padding:10px;
+  margin-bottom:8px;
+  background:rgba(0,0,0,.3);
+  border-left:4px solid var(--primary);
+  border-radius:8px;
+}
+
+/* BOTS */
+.bots-layout {
+  display:flex;
+  gap:20px;
+}
+.bot-item {
+  padding:10px;
+  cursor:pointer;
+  transition:.3s;
+}
+.bot-item:hover {
+  transform:translateX(5px);
+  color:var(--accent);
+}
+
+.preview-img {
+  width:280px;
+  border-radius:12px;
+  transition:.3s;
+}
+
+/* STATUS */
+.status-container {
+  background:rgba(0,0,0,.4);
+  padding:12px;
+  border-radius:50px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.loading-bar {
+  flex:1;
+  height:6px;
+  background:#111;
+  overflow:hidden;
+  border-radius:10px;
+}
+
+.bar-fill {
+  width:30%;
+  height:100%;
+  background:var(--primary);
+  animation:slide 2s linear infinite;
+}
+
+@keyframes slide {
+  0% {margin-left:-30%;}
+  100% {margin-left:100%;}
+}
+
+@media(max-width:768px){
+  .nav-grid {grid-template-columns:1fr;}
+  .bots-layout {flex-direction:column;}
+  .preview-img {width:100%;}
+}
+</style>
 </head>
+
 <body>
 
-    <div id="loader">
-        <i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--primary);"></i>
+<div id="loader">
+  <i class="fas fa-circle-notch fa-spin fa-2x" style="color:var(--primary)"></i>
+</div>
+
+<div class="container">
+
+<header class="header">
+  <img src="https://i.imgur.com/ohuYhH3.png" class="avatar">
+  <h1>1fsi</h1>
+  <p class="tagline">Desarrollador & Configurador Profesional</p>
+</header>
+
+<div class="nav-grid">
+  <div class="nav-item nav-active" onclick="showTab('inicio', this)">Principal</div>
+  <div class="nav-item" onclick="showTab('info', this)">Info</div>
+  <div class="nav-item" onclick="showTab('java', this)">Java</div>
+  <div class="nav-item" onclick="showTab('bots', this)">Bots</div>
+  <div class="nav-item" onclick="showTab('plugins', this)">Plugins</div>
+  <div class="nav-item" onclick="showTab('servidores', this)">Servidores</div>
+</div>
+
+<div id="inicio" class="content-box show">
+  <h3>Bienvenido</h3>
+  <p style="opacity:.7;">Selecciona una categoría para ver mis trabajos.</p>
+</div>
+
+<div id="info" class="content-box">
+  <h3>Especialidades</h3>
+  <ul class="list-style">
+    <li>Bots avanzados</li>
+    <li>Optimización de servidores</li>
+    <li>Seguridad</li>
+  </ul>
+</div>
+
+<div id="java" class="content-box">
+  <h3>Java Dev</h3>
+  <ul class="list-style">
+    <li>Plugins</li>
+    <li>Modalidades</li>
+    <li>Optimización TPS</li>
+  </ul>
+</div>
+
+<div id="bots" class="content-box">
+  <div class="bots-layout">
+    <div>
+      <div class="bot-item" onclick="updateImg('https://imgur.com/ytWqc97.png')">Tickets</div>
+      <div class="bot-item" onclick="updateImg('https://imgur.com/mPCJhyd.png')">Reseñas</div>
     </div>
+    <img id="prevImg" src="https://imgur.com/ytWqc97.png" class="preview-img">
+  </div>
+</div>
 
-    <div class="container">
-        
-        <header style="text-align:center;">
-            <div class="avatar-frame">
-                <div class="avatar-glow"></div>
-                <img src="https://i.imgur.com/ohuYhH3.png" alt="1fsi" class="avatar">
-            </div>
-            <h1>1fsi</h1>
-            <p style="color: #888; font-size: 0.9rem;">Configuración & Desarrollo</p>
-        </header>
-
-        <div class="stats-menu">
-            <div class="stat-box">
-                <i class="fas fa-eye"></i>
-                <div class="stat-val" id="visit-count">124</div>
-                <div class="stat-txt">Visitantes</div>
-            </div>
-            <div class="stat-box">
-                <i class="fas fa-shopping-cart"></i>
-                <div class="stat-val">+30</div>
-                <div class="stat-txt">Ventas</div>
-            </div>
-            <div class="stat-box">
-                <i class="fas fa-check-circle"></i>
-                <div class="stat-val">15</div>
-                <div class="stat-txt">Proyectos</div>
-            </div>
-        </div>
-
-        <div class="nav-grid">
-            <div class="nav-item nav-active" onclick="showTab('inicio', this)">
-                <span><i class="fas fa-home" style="color:#ff9900"></i> Principal</span>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="nav-item" onclick="showTab('info', this)">
-                <span><i class="fas fa-info-circle" style="color:#ff00ff"></i> Información</span>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="nav-item" onclick="showTab('java', this)">
-                <span><i class="fab fa-java" style="color:#5382a1"></i> Java Dev</span>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="nav-item" onclick="showTab('bots', this)">
-                <span><i class="fas fa-robot" style="color:#8a2be2"></i> Mis Bots</span>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="nav-item" style="grid-column: span 2;" onclick="showTab('servidores', this)">
-                <span><i class="fas fa-server" style="color:#00ffcc"></i> Servidores Configurados</span>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <a href="https://discord.gg/SDXfPEuUuQ" target="_blank" class="nav-item" style="grid-column: span 2;">
-                <span><i class="fab fa-discord" style="color:#5865F2"></i> Discord</span>
-                <i class="fas fa-external-link-alt"></i>
-            </a>
-        </div>
-
-        <div id="inicio" class="content-box show">
-            <h3>Hola</h3>
-            <p style="color:#b9bbbe; margin-top:10px;">Mira mis trabajos y servicios en las categorías de arriba.</p>
-        </div>
-
-        <div id="info" class="content-box">
-            <h3 style="color: #ff00ff;"><i class="fas fa-shield-alt"></i> Especialidades</h3>
-            <ul class="list-style">
-                <li><i class="fas fa-check-circle"></i> Configuración de Bots</li>
-                <li><i class="fas fa-check-circle"></i> Optimización de Servidores</li>
-                <li><i class="fas fa-check-circle"></i> Seguridad</li>
-            </ul>
-        </div>
-
-        <div id="java" class="content-box">
-            <h3 style="color: #5382a1;"><i class="fas fa-code-branch"></i> Java Dev</h3>
-            <ul class="list-style">
-                <li><i class="fas fa-code"></i> Configuración de Plugins</li>
-                <li><i class="fas fa-cubes"></i> Modalidades personalizadas</li>
-                <li><i class="fas fa-microchip"></i> Optimización de TPS</li>
-            </ul>
-        </div>
-
-        <div id="bots" class="content-box">
-            <div class="bots-layout">
-                <div style="flex:1">
-                    <h3 style="margin-bottom:15px;"><i class="fas fa-robot"></i> Mis Bots</h3>
-                    <div class="bot-item" onclick="updateImg('https://imgur.com/ytWqc97.png')"><i class="fas fa-ticket-alt"></i> Tickets</div>
-                    <div class="bot-item" onclick="updateImg('https://imgur.com/mPCJhyd.png')"><i class="fas fa-star"></i> Reseñas</div>
-                    <div class="bot-item"><i class="fas fa-lightbulb"></i> Sugerencias</div>
-                </div>
-                <div>
-                    <img id="prevImg" src="https://imgur.com/ytWqc97.png" class="preview-img">
-                </div>
-            </div>
-        </div>
-
-        <div id="servidores" class="content-box">
-            <div style="text-align: center; padding: 20px;">
-                <i class="fas fa-tools fa-3x" style="color: var(--primary); margin-bottom: 15px;"></i>
-                <h3>PROXIMAMENTE</h3>
-                <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">Sección en mantenimiento.</p>
-            </div>
-        </div>
-
-        <div class="status-container">
-            <span style="font-size: 0.7rem; font-weight: 700; color: var(--primary);">SYSTEM ACTIVE</span>
-            <div class="loading-bar"><div class="bar-fill"></div></div>
-        </div>
-
+<div id="plugins" class="content-box">
+  <div style="text-align:center">
+    <h3>Plugins Propios</h3>
+    <p style="opacity:.7;">Desarrollo de plugins exclusivos.</p>
+    <div style="margin-top:15px; border:1px dashed var(--primary); padding:10px; border-radius:10px;">
+      🚧 Próximamente
     </div>
+  </div>
+</div>
 
-    <script>
-        function showTab(id, btn) {
-            document.querySelectorAll('.content-box').forEach(b => b.classList.remove('show'));
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('nav-active'));
-            document.getElementById(id).classList.add('show');
-            btn.classList.add('nav-active');
-        }
+<div id="servidores" class="content-box">
+  <h3>Servidores</h3>
+  <p style="opacity:.6;">Próximamente</p>
+</div>
 
-        function updateImg(url) {
-            const img = document.getElementById('prevImg');
-            img.style.opacity = '0';
-            setTimeout(() => { img.src = url; img.style.opacity = '1'; }, 200);
-        }
+<div class="status-container">
+  <span style="font-size:.7rem; color:var(--primary)">SYSTEM ACTIVE</span>
+  <div class="loading-bar"><div class="bar-fill"></div></div>
+</div>
 
-        // Lógica simple para visitantes (se guarda en el navegador)
-        let visits = localStorage.getItem('visits') || 100;
-        if(!sessionStorage.getItem('visited')) {
-            visits = parseInt(visits) + 1;
-            localStorage.setItem('visits', visits);
-            sessionStorage.setItem('visited', 'true');
-        }
-        document.getElementById('visit-count').innerText = visits;
+<p style="margin-top:10px; font-size:.8rem; opacity:.6;">
+  Visitas: <span id="visitas">...</span>
+</p>
 
-        window.onload = () => {
-            setTimeout(() => {
-                document.getElementById('loader').style.opacity = '0';
-                setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
-            }, 500);
-        };
-    </script>
+</div>
+
+<script>
+function showTab(id, btn){
+  document.querySelectorAll('.content-box').forEach(b=>b.classList.remove('show'));
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('nav-active'));
+  document.getElementById(id).classList.add('show');
+  btn.classList.add('nav-active');
+}
+
+function updateImg(url){
+  let img=document.getElementById('prevImg');
+  img.style.opacity=0;
+  setTimeout(()=>{
+    img.src=url;
+    img.style.opacity=1;
+  },200);
+}
+
+fetch('https://api.countapi.xyz/hit/1fsi/visitas')
+.then(res=>res.json())
+.then(data=>{
+  document.getElementById("visitas").innerText=data.value;
+});
+
+window.onload=()=>{
+  setTimeout(()=>{
+    document.getElementById('loader').style.opacity=0;
+    setTimeout(()=>document.getElementById('loader').style.display='none',500);
+  },700);
+}
+</script>
+
 </body>
-</html>
+      </html>
