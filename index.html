@@ -28,9 +28,6 @@ body{
   overflow-x:hidden;
 }
 
-::selection{background:var(--primary);}
-
-/* LOADER */
 #loader{
   position:fixed;
   inset:0;
@@ -42,48 +39,72 @@ body{
   transition:.5s;
 }
 
-/* CONTAINER */
 .container{
   max-width:900px;
   margin:auto;
   padding:30px 15px 50px;
 }
 
-/* HERO */
-.hero{
-  text-align:center;
-  margin-bottom:30px;
-}
+.hero{text-align:center;margin-bottom:25px;}
 
 .avatar{
   width:120px;height:120px;border-radius:50%;
   border:3px solid var(--primary);
-  transition:.4s;
-}
-.avatar:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 30px rgba(124,58,237,.7);
 }
 
-h1{
-  font-size:2.6rem;
+h1{font-size:2.6rem;margin-top:10px;}
+.tagline{color:#aaa;font-size:.9rem;}
+
+/* PROMO */
+.promo-box{
+  background:linear-gradient(145deg,#12071f,#0a0a0a);
+  border:1px solid rgba(124,58,237,0.4);
+  border-radius:20px;
+  padding:25px;
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.promo-badge{
+  background:#ff3b3b;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:.75rem;
+}
+
+.countdown{
+  display:flex;
+  justify-content:center;
+  gap:10px;
   margin-top:10px;
-  background:linear-gradient(135deg,#fff,#aaa);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
 }
 
-.tagline{
-  color:#aaa;
-  font-size:.9rem;
+.countdown div{
+  background:#000;
+  border-radius:10px;
+  padding:10px;
 }
 
-/* NAV MEJORADO */
+/* SKILLS */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.skill{
+  background:#0f0f0f;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+}
+
+/* NAV */
 .nav-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:12px;
-  margin-bottom:25px;
 }
 
 .nav-item{
@@ -91,108 +112,27 @@ h1{
   border:1px solid var(--border);
   border-radius:14px;
   padding:15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  text-align:center;
   cursor:pointer;
-  transition:.25s;
-  font-size:.9rem;
-}
-
-.nav-item:hover{
-  transform:translateY(-4px);
-  border-color:var(--primary);
-  background:rgba(124,58,237,0.15);
 }
 
 .nav-active{
   background:linear-gradient(135deg,var(--primary),var(--accent));
-  border:none;
 }
 
 /* CONTENT */
 .content-box{
   display:none;
-  background:var(--glass);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:15px;
-  box-shadow:0 10px 40px rgba(0,0,0,.4);
-  animation:fadeUp .4s ease;
+  margin-top:15px;
 }
 .show{display:block;}
-
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(15px);}
-  to{opacity:1;transform:translateY(0);}
-}
-
-/* LIST */
-.list-style li{
-  list-style:none;
-  padding:10px;
-  margin-bottom:8px;
-  background:rgba(0,0,0,.3);
-  border-left:3px solid var(--primary);
-  border-radius:6px;
-  font-size:.85rem;
-}
-
-/* BOTS */
-.bots-layout{
-  display:flex;
-  gap:15px;
-}
-.bot-item{
-  padding:8px;
-  cursor:pointer;
-  opacity:.8;
-}
-.bot-item:hover{
-  opacity:1;
-  transform:translateX(4px);
-}
-
-.preview-img{
-  width:260px;
-  border-radius:10px;
-  transition:.3s;
-}
-
-/* GLOW CURSOR */
-.cursor-glow{
-  position:fixed;
-  width:300px;
-  height:300px;
-  background:radial-gradient(circle, rgba(124,58,237,0.25), transparent 60%);
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  z-index:0;
-}
-
-/* FOOTER INFO */
-.footer{
-  margin-top:20px;
-  font-size:.75rem;
-  opacity:.6;
-  text-align:center;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .bots-layout{flex-direction:column;}
-  .preview-img{width:100%;}
-}
 </style>
 </head>
 
 <body>
 
-<div class="cursor-glow" id="glow"></div>
-
 <div id="loader">
-<i class="fas fa-circle-notch fa-spin fa-2x" style="color:var(--primary)"></i>
+<i class="fas fa-circle-notch fa-spin fa-2x"></i>
 </div>
 
 <div class="container">
@@ -200,68 +140,41 @@ h1{
 <div class="hero">
 <img src="https://i.imgur.com/ohuYhH3.png" class="avatar">
 <h1>1fsi</h1>
-<p class="tagline">Desarrollador & Configurador Profesional</p>
+<p class="tagline">Desarrollador</p>
+</div>
+
+<div class="promo-box">
+<div class="promo-badge">🚀 DISPONIBLE</div>
+<h2>Freelance Abierto</h2>
+
+<div class="countdown">
+<div><span id="d">00</span></div>
+<div><span id="h">00</span></div>
+<div><span id="m">00</span></div>
+<div><span id="s">00</span></div>
+</div>
+</div>
+
+<div class="skills-grid">
+<div class="skill">Java</div>
+<div class="skill">Bots</div>
+<div class="skill">Plugins</div>
+<div class="skill">Hosting</div>
+<div class="skill">Seguridad</div>
+<div class="skill">+</div>
 </div>
 
 <div class="nav-grid">
 <div class="nav-item nav-active" onclick="showTab('inicio',this)">Inicio</div>
 <div class="nav-item" onclick="showTab('info',this)">Info</div>
-<div class="nav-item" onclick="showTab('java',this)">Java</div>
-<div class="nav-item" onclick="showTab('bots',this)">Bots</div>
-<div class="nav-item" onclick="showTab('plugins',this)">Plugins</div>
-<div class="nav-item" onclick="showTab('servidores',this)">Servidores</div>
 </div>
 
 <div id="inicio" class="content-box show">
-<h3>Bienvenido</h3>
-<p style="opacity:.7;">Explora mis servicios y desarrollos.</p>
+<p>Bienvenido</p>
 </div>
 
 <div id="info" class="content-box">
-<h3>Especialidades</h3>
-<ul class="list-style">
-<li>Bots avanzados</li>
-<li>Optimización de servidores</li>
-<li>Seguridad</li>
-</ul>
-</div>
-
-<div id="java" class="content-box">
-<h3>Java Dev</h3>
-<ul class="list-style">
-<li>Plugins personalizados</li>
-<li>Modalidades únicas</li>
-<li>Optimización TPS</li>
-</ul>
-</div>
-
-<div id="bots" class="content-box">
-<div class="bots-layout">
-<div>
-<div class="bot-item" onclick="updateImg('https://imgur.com/ytWqc97.png')">Tickets</div>
-<div class="bot-item" onclick="updateImg('https://imgur.com/mPCJhyd.png')">Reseñas</div>
-</div>
-<img id="prevImg" src="https://imgur.com/ytWqc97.png" class="preview-img">
-</div>
-</div>
-
-<div id="plugins" class="content-box">
-<div style="text-align:center">
-<h3>Plugins Propios</h3>
-<p style="opacity:.7;">En desarrollo</p>
-<div style="margin-top:10px;border:1px dashed var(--primary);padding:10px;border-radius:10px;">
-🚧 Próximamente
-</div>
-</div>
-</div>
-
-<div id="servidores" class="content-box">
-<h3>Servidores</h3>
-<p style="opacity:.6;">Próximamente</p>
-</div>
-
-<div class="footer">
-Visitas: <span id="visitas">...</span>
+<p>Mis servicios</p>
 </div>
 
 </div>
@@ -274,36 +187,24 @@ document.getElementById(id).classList.add('show');
 btn.classList.add('nav-active');
 }
 
-function updateImg(url){
-let img=document.getElementById('prevImg');
-img.style.opacity=0;
-setTimeout(()=>{
-img.src=url;
-img.style.opacity=1;
-},200);
-}
+const endDate = new Date();
+endDate.setHours(endDate.getHours() + 48);
 
-/* VISITAS */
-fetch('https://api.countapi.xyz/hit/1fsi/visitas')
-.then(res=>res.json())
-.then(data=>{
-document.getElementById("visitas").innerText=data.value;
-});
+setInterval(()=>{
+const now = new Date();
+const diff = endDate - now;
 
-/* LOADER */
+document.getElementById("d").innerText = Math.floor(diff/86400000);
+document.getElementById("h").innerText = Math.floor(diff/3600000)%24;
+document.getElementById("m").innerText = Math.floor(diff/60000)%60;
+document.getElementById("s").innerText = Math.floor(diff/1000)%60;
+},1000);
+
 window.onload=()=>{
 setTimeout(()=>{
-document.getElementById('loader').style.opacity=0;
-setTimeout(()=>document.getElementById('loader').style.display='none',500);
-},600);
+document.getElementById('loader').style.display='none';
+},500);
 }
-
-/* CURSOR GLOW */
-document.addEventListener("mousemove", e=>{
-let glow=document.getElementById("glow");
-glow.style.left=e.clientX+"px";
-glow.style.top=e.clientY+"px";
-});
 </script>
 
 </body>
