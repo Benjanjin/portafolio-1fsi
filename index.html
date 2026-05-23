@@ -1,229 +1,339 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1fsi | Portfolio</title>
- 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
- 
-    <style>
-        :root {
-            --primary: #8a2be2;
-            --accent: #00d4ff;
-            --bg-dark: #080808;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --violet-neon: #8a2be2;
-        }
- 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
- 
-        body {
-            background: radial-gradient(circle at 50% 50%, #1a0b2e 0%, #080808 100%);
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            overflow-x: hidden;
-        }
- 
-        /* --- LOADER --- */
-        #loader {
-            position: fixed; inset: 0; background: #080808; z-index: 9999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: 0.5s;
-        }
- 
-        .container {
-            position: relative; z-index: 10; width: 100%; max-width: 850px;
-            padding: 40px 20px; display: flex; flex-direction: column; align-items: center;
-        }
- 
-        /* --- HEADER --- */
-        .header { text-align: center; margin-bottom: 30px; }
-        .avatar {
-            width: 140px; height: 140px; border-radius: 50%;
-            border: 3px solid var(--primary); padding: 5px; background: var(--bg-dark);
-            margin-bottom: 15px;
-        }
-        h1 { font-size: 3rem; font-weight: 800; letter-spacing: -2px; }
-        .tagline { color: #b9bbbe; font-size: 0.9rem; opacity: 0.8; }
- 
-        /* --- NAVEGACIÓN --- */
-        .nav-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr);
-            gap: 12px; width: 100%; margin-bottom: 25px;
-        }
-        .nav-item {
-            background: var(--glass); border: 1px solid var(--glass-border);
-            border-radius: 12px; padding: 15px 20px; text-decoration: none; color: white;
-            display: flex; align-items: center; justify-content: space-between;
-            transition: 0.3s; cursor: pointer; backdrop-filter: blur(10px);
-        }
-        .nav-item:hover { background: rgba(255,255,255,0.07); border-color: var(--primary); transform: translateY(-2px); }
-        .nav-active { border-color: var(--primary); background: rgba(138, 43, 226, 0.15); box-shadow: 0 0 15px rgba(138, 43, 226, 0.2); }
- 
-        /* --- SECCIONES --- */
-        .content-box {
-            width: 100%; background: var(--glass); border-radius: 20px;
-            border: 1px solid var(--glass-border); padding: 30px;
-            margin-bottom: 25px; display: none; backdrop-filter: blur(10px);
-            animation: fadeIn 0.4s ease;
-        }
-        .show { display: block; }
- 
-        .list-style { list-style: none; margin-top: 15px; }
-        .list-style li {
-            padding: 12px; background: rgba(0,0,0,0.25); border-radius: 8px;
-            margin-bottom: 8px; border-left: 4px solid var(--primary);
-            display: flex; align-items: center; gap: 10px; font-size: 0.9rem;
-        }
- 
-        /* --- BOTS DISPLAY --- */
-        .bots-layout { display: flex; gap: 25px; align-items: center; }
-        .bot-item {
-            background: rgba(255,255,255,0.03); padding: 10px 15px; border-radius: 8px;
-            margin-bottom: 8px; cursor: pointer; transition: 0.3s; border: 1px solid transparent;
-        }
-        .bot-item:hover { background: rgba(138, 43, 226, 0.1); border-color: var(--primary); transform: translateX(5px); }
-        .preview-img { width: 280px; border-radius: 12px; border: 1px solid var(--glass-border); transition: 0.3s; }
- 
-        /* --- STATUS BAR --- */
-        .status-container {
-            width: 100%; background: rgba(0,0,0,0.4); border-radius: 50px;
-            padding: 12px 20px; border: 1px solid var(--glass-border);
-            display: flex; align-items: center; gap: 15px;
-        }
-        .loading-bar { flex: 1; height: 6px; background: #1a1a1a; border-radius: 10px; overflow: hidden; position: relative; }
-        .bar-fill {
-            height: 100%; width: 30%; background: var(--violet-neon);
-            position: absolute; animation: slide 2s linear infinite;
-        }
-        @keyframes slide { 0% { left: -30%; } 100% { left: 100%; } }
- 
-        @media (max-width: 768px) {
-            .nav-grid { grid-template-columns: 1fr; }
-            .bots-layout { flex-direction: column; }
-            .preview-img { width: 100%; }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>1fsi | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+:root{
+    --bg:#07070a;
+    --primary:#8a2be2;
+    --cyan:#00d4ff;
+    --glass:rgba(255,255,255,0.04);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+
+body{
+    background: radial-gradient(circle at top,#1a0b2e,#07070a);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ================= LOADER ================= */
+#loader{
+    position:fixed;inset:0;
+    background:#050507;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.code-line{
+    font-family:"JetBrains Mono";
+    font-size:12px;
+    color:#00ff9d;
+    opacity:0;
+    animation:codeIn 2s infinite;
+}
+
+@keyframes codeIn{
+    0%{opacity:0; transform:translateY(10px)}
+    30%{opacity:1}
+    100%{opacity:0; transform:translateY(-10px)}
+}
+
+/* ================= MATRIX BG ================= */
+canvas{
+    position:fixed;
+    top:0;left:0;
+    z-index:-1;
+}
+
+/* ================= MAIN ================= */
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+/* HEADER */
+header{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.avatar{
+    width:130px;
+    border-radius:50%;
+    border:2px solid var(--primary);
+    box-shadow:0 0 25px rgba(138,43,226,.5);
+}
+
+h1{
+    font-size:3rem;
+    letter-spacing:-2px;
+}
+
+.tagline{
+    opacity:.6;
+    font-size:.9rem;
+}
+
+/* NAV */
+.nav{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin:25px 0;
+}
+
+.nav-item{
+    background:var(--glass);
+    padding:14px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.08);
+    cursor:pointer;
+    transition:.3s;
+    backdrop-filter:blur(10px);
+}
+
+.nav-item:hover{
+    transform:translateY(-3px) scale(1.02);
+    border-color:var(--primary);
+    box-shadow:0 0 20px rgba(138,43,226,.2);
+}
+
+.active{
+    background:rgba(138,43,226,.15);
+    border-color:var(--primary);
+}
+
+/* CONTENT */
+.box{
+    display:none;
+    padding:25px;
+    border-radius:18px;
+    background:var(--glass);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(10px);
+    animation:fade .4s ease;
+}
+
+.show{display:block;}
+
+@keyframes fade{
+    from{opacity:0; transform:translateY(10px)}
+    to{opacity:1; transform:translateY(0)}
+}
+
+/* LIST */
+li{
+    list-style:none;
+    padding:10px;
+    margin:8px 0;
+    background:rgba(0,0,0,.25);
+    border-left:3px solid var(--primary);
+    border-radius:8px;
+    transition:.3s;
+}
+
+li:hover{
+    transform:translateX(5px);
+}
+
+/* BOT PANEL */
+.bots{
+    display:flex;
+    gap:20px;
+    align-items:center;
+}
+
+.bot{
+    padding:10px;
+    margin:8px 0;
+    background:rgba(255,255,255,.03);
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.bot:hover{
+    background:rgba(138,43,226,.2);
+    transform:translateX(5px);
+}
+
+img{
+    width:250px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+/* STATUS */
+.status{
+    margin-top:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:"JetBrains Mono";
+    font-size:12px;
+    opacity:.7;
+}
+
+.bar{
+    flex:1;
+    height:5px;
+    background:#111;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.bar span{
+    display:block;
+    height:100%;
+    width:40%;
+    background:linear-gradient(90deg,var(--primary),var(--cyan));
+    animation:load 2s infinite;
+}
+
+@keyframes load{
+    0%{transform:translateX(-100%)}
+    100%{transform:translateX(250%)}
+}
+
+/* SCROLL ANIMATION */
+.fade-up{
+    opacity:0;
+    transform:translateY(30px);
+    transition:1s;
+}
+
+.fade-up.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+</style>
 </head>
+
 <body>
- 
-    <div id="loader">
-        <i class="fas fa-circle-notch fa-spin fa-2x" style="color: var(--primary);"></i>
+
+<canvas id="matrix"></canvas>
+
+<!-- LOADER -->
+<div id="loader">
+    <div class="code-line">[BOOT] loading modules...</div>
+    <div class="code-line">[SYS] initializing UI engine...</div>
+    <div class="code-line">[OK] connecting portfolio...</div>
+</div>
+
+<div class="container">
+
+<header>
+    <img class="avatar" src="https://i.imgur.com/ohuYhH3.png">
+    <h1>1fsi</h1>
+    <div class="tagline">Developer • Bots • Systems</div>
+</header>
+
+<div class="nav">
+    <div class="nav-item active" onclick="tab('home',this)">Home</div>
+    <div class="nav-item" onclick="tab('info',this)">Info</div>
+    <div class="nav-item" onclick="tab('bots',this)">Bots</div>
+    <div class="nav-item" onclick="tab('servers',this)">Servers</div>
+</div>
+
+<div id="home" class="box show fade-up">
+    <h3>Welcome</h3>
+    <p style="opacity:.6">Portfolio system loaded successfully.</p>
+</div>
+
+<div id="info" class="box fade-up">
+    <h3>Skills</h3>
+    <ul>
+        <li>Bot Development Advanced</li>
+        <li>Server Optimization</li>
+        <li>Security Systems</li>
+    </ul>
+</div>
+
+<div id="bots" class="box fade-up">
+    <div class="bots">
+        <div>
+            <div class="bot" onclick="img('https://imgur.com/ytWqc97.png')">Tickets Bot</div>
+            <div class="bot" onclick="img('https://imgur.com/mPCJhyd.png')">Reviews Bot</div>
+        </div>
+        <img id="preview" src="https://imgur.com/ytWqc97.png">
     </div>
- 
-    <div class="container">
- 
-        <header class="header">
-            <img src="https://i.imgur.com/ohuYhH3.png" alt="1fsi" class="avatar">
-            <h1>1fsi</h1>
-            <p class="tagline">Desarrollador & Configurador Profesional</p>
-        </header>
- 
-        <div class="nav-grid">
-            <div class="nav-item nav-active" onclick="showTab('inicio', this)">
-                <span><i class="fas fa-home" style="color:#ff9900"></i> Principal</span>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="nav-item" onclick="showTab('info', this)">
-                <span><i class="fas fa-info-circle" style="color:#ff00ff"></i> Información</span>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="nav-item" onclick="showTab('java', this)">
-                <span><i class="fab fa-java" style="color:#5382a1"></i> Java Dev</span>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="nav-item" onclick="showTab('bots', this)">
-                <span><i class="fas fa-robot" style="color:#8a2be2"></i> Mis Bots</span>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="nav-item" style="grid-column: span 2;" onclick="showTab('servidores', this)">
-                <span><i class="fas fa-server" style="color:#00ffcc"></i> Servidores Configurados</span>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-            <a href="https://discord.gg/SDXfPEuUuQ" target="_blank" class="nav-item" style="grid-column: span 2;">
-                <span><i class="fab fa-discord" style="color:#5865F2"></i> Contacto Directo</span>
-                <i class="fas fa-external-link-alt"></i>
-            </a>
-        </div>
- 
-        <div id="inicio" class="content-box show">
-            <h3>Bienvenido</h3>
-            <p style="color:#b9bbbe; margin-top:10px;">Selecciona una categoría arriba para ver mis trabajos realizados y servicios disponibles.</p>
-        </div>
- 
-        <div id="info" class="content-box">
-            <h3 style="color: #ff00ff;"><i class="fas fa-shield-alt"></i> Especialidades</h3>
-            <ul class="list-style">
-                <li><i class="fas fa-check-circle"></i> Configuración de Bots de alta gama</li>
-                <li><i class="fas fa-check-circle"></i> Optimización masiva de Servidores</li>
-                <li><i class="fas fa-check-circle"></i> Seguridad y protección contra ataques</li>
-            </ul>
-        </div>
- 
-        <div id="java" class="content-box">
-            <h3 style="color: #5382a1;"><i class="fas fa-code-branch"></i> Desarrollo Java</h3>
-            <ul class="list-style">
-                <li><i class="fas fa-code"></i> Configuración técnica de Plugins</li>
-                <li><i class="fas fa-cubes"></i> Creación de modalidades personalizadas</li>
-                <li><i class="fas fa-microchip"></i> Optimización de rendimiento (TPS)</li>
-            </ul>
-        </div>
- 
-        <div id="bots" class="content-box">
-            <div class="bots-layout">
-                <div style="flex:1">
-                    <h3 style="margin-bottom:15px;"><i class="fas fa-robot"></i> Mis Bots</h3>
-                    <div class="bot-item" onclick="updateImg('https://imgur.com/ytWqc97.png')"><i class="fas fa-ticket-alt"></i> Tickets</div>
-                    <div class="bot-item" onclick="updateImg('https://imgur.com/mPCJhyd.png')"><i class="fas fa-star"></i> Reseñas</div>
-                    <div class="bot-item"><i class="fas fa-lightbulb"></i> Sugerencias</div>
-                </div>
-                <div>
-                    <img id="prevImg" src="https://imgur.com/ytWqc97.png" class="preview-img">
-                </div>
-            </div>
-        </div>
- 
-        <div id="servidores" class="content-box">
-            <div style="text-align: center; padding: 20px;">
-                <i class="fas fa-tools fa-3x" style="color: var(--primary); margin-bottom: 15px;"></i>
-                <h3 style="letter-spacing: 2px;">PROXIMAMENTE</h3>
-                <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">Esta sección está bajo mantenimiento. Pronto verás los servidores configurados aquí.</p>
-            </div>
-        </div>
- 
-        <div class="status-container">
-            <span style="font-size: 0.7rem; font-weight: 700; color: var(--violet-neon);">RAWCODE SYSTEM ACTIVE</span>
-            <div class="loading-bar"><div class="bar-fill"></div></div>
-        </div>
- 
-    </div>
- 
-    <script>
-        function showTab(id, btn) {
-            document.querySelectorAll('.content-box').forEach(b => b.classList.remove('show'));
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('nav-active'));
-            document.getElementById(id).classList.add('show');
-            btn.classList.add('nav-active');
+</div>
+
+<div id="servers" class="box fade-up">
+    <h3>Coming Soon</h3>
+</div>
+
+<div class="status">
+    SYSTEM ACTIVE
+    <div class="bar"><span></span></div>
+</div>
+
+</div>
+
+<script>
+function tab(id,el){
+    document.querySelectorAll('.box').forEach(b=>b.classList.remove('show'));
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    document.getElementById(id).classList.add('show');
+    el.classList.add('active');
+}
+
+function img(src){
+    let i=document.getElementById("preview");
+    i.style.opacity=0;
+    setTimeout(()=>{i.src=src;i.style.opacity=1},200);
+}
+
+setTimeout(()=>document.getElementById("loader").style.display="none",2500);
+
+/* MATRIX */
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let letters="01ABCDEF#$%&";
+letters=letters.split("");
+
+const fontSize=14;
+const columns=canvas.width/fontSize;
+const drops=[];
+
+for(let x=0;x<columns;x++)drops[x]=1;
+
+function draw(){
+    ctx.fillStyle="rgba(0,0,0,0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#00ff9d";
+    ctx.font=fontSize+"px monospace";
+
+    for(let i=0;i<drops.length;i++){
+        let text=letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+        if(drops[i]*fontSize>canvas.height && Math.random()>0.975){
+            drops[i]=0;
         }
- 
-        function updateImg(url) {
-            const img = document.getElementById('prevImg');
-            img.style.opacity = '0';
-            setTimeout(() => { img.src = url; img.style.opacity = '1'; }, 200);
-        }
- 
-        window.onload = () => {
-            setTimeout(() => {
-                document.getElementById('loader').style.opacity = '0';
-                setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
-            }, 800);
-        };
-    </script>
+        drops[i]++;
+    }
+}
+setInterval(draw,33);
+</script>
+
 </body>
-                        </html>
+</html>
