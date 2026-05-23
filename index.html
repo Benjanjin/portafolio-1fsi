@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1fsi | Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <style>
 :root{
-    --bg:#07070a;
     --primary:#8a2be2;
     --cyan:#00d4ff;
+    --bg:#07070a;
     --glass:rgba(255,255,255,0.04);
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
 
 body{
-    background: radial-gradient(circle at top,#1a0b2e,#07070a);
+    background:radial-gradient(circle at top,#1a0b2e,#07070a);
     color:white;
     overflow-x:hidden;
 }
 
-/* ================= LOADER ================= */
+/* LOADER */
 #loader{
     position:fixed;inset:0;
     background:#050507;
@@ -39,24 +39,16 @@ body{
     font-family:"JetBrains Mono";
     font-size:12px;
     color:#00ff9d;
-    opacity:0;
-    animation:codeIn 2s infinite;
+    animation:code 2s infinite;
 }
 
-@keyframes codeIn{
-    0%{opacity:0; transform:translateY(10px)}
+@keyframes code{
+    0%{opacity:0;transform:translateY(10px)}
     30%{opacity:1}
-    100%{opacity:0; transform:translateY(-10px)}
+    100%{opacity:0;transform:translateY(-10px)}
 }
 
-/* ================= MATRIX BG ================= */
-canvas{
-    position:fixed;
-    top:0;left:0;
-    z-index:-1;
-}
-
-/* ================= MAIN ================= */
+/* CONTAINER */
 .container{
     max-width:900px;
     margin:auto;
@@ -64,34 +56,22 @@ canvas{
 }
 
 /* HEADER */
-header{
-    text-align:center;
-    margin-bottom:25px;
-}
-
+header{text-align:center;margin-bottom:20px;}
 .avatar{
-    width:130px;
-    border-radius:50%;
+    width:130px;border-radius:50%;
     border:2px solid var(--primary);
-    box-shadow:0 0 25px rgba(138,43,226,.5);
+    box-shadow:0 0 25px rgba(138,43,226,.4);
 }
 
-h1{
-    font-size:3rem;
-    letter-spacing:-2px;
-}
-
-.tagline{
-    opacity:.6;
-    font-size:.9rem;
-}
+h1{font-size:3rem;}
+.tagline{opacity:.6;font-size:.9rem;}
 
 /* NAV */
 .nav{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:10px;
-    margin:25px 0;
+    margin:20px 0;
 }
 
 .nav-item{
@@ -101,11 +81,10 @@ h1{
     border:1px solid rgba(255,255,255,.08);
     cursor:pointer;
     transition:.3s;
-    backdrop-filter:blur(10px);
 }
 
 .nav-item:hover{
-    transform:translateY(-3px) scale(1.02);
+    transform:translateY(-3px);
     border-color:var(--primary);
     box-shadow:0 0 20px rgba(138,43,226,.2);
 }
@@ -115,7 +94,7 @@ h1{
     border-color:var(--primary);
 }
 
-/* CONTENT */
+/* BOX */
 .box{
     display:none;
     padding:25px;
@@ -129,8 +108,8 @@ h1{
 .show{display:block;}
 
 @keyframes fade{
-    from{opacity:0; transform:translateY(10px)}
-    to{opacity:1; transform:translateY(0)}
+    from{opacity:0;transform:translateY(15px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
 /* LIST */
@@ -143,12 +122,56 @@ li{
     border-radius:8px;
     transition:.3s;
 }
+li:hover{transform:translateX(5px);}
 
-li:hover{
-    transform:translateX(5px);
+/* GRID CARDS */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
 
-/* BOT PANEL */
+.card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,.08);
+    padding:15px;
+    border-radius:12px;
+    transition:.3s;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+}
+
+.card:hover{
+    transform:scale(1.04) translateY(-5px);
+    border-color:var(--primary);
+    box-shadow:0 0 25px rgba(138,43,226,.3);
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:0;left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+    transition:.5s;
+}
+
+.card:hover::before{left:100%;}
+
+.price{
+    position:absolute;
+    top:10px;
+    right:10px;
+    font-size:12px;
+    font-weight:bold;
+    color:#00ff9d;
+}
+
+.free{color:#00d4ff;}
+
+/* BOT */
 .bots{
     display:flex;
     gap:20px;
@@ -206,31 +229,16 @@ img{
     0%{transform:translateX(-100%)}
     100%{transform:translateX(250%)}
 }
-
-/* SCROLL ANIMATION */
-.fade-up{
-    opacity:0;
-    transform:translateY(30px);
-    transition:1s;
-}
-
-.fade-up.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
 </style>
 </head>
 
 <body>
 
-<canvas id="matrix"></canvas>
-
 <!-- LOADER -->
 <div id="loader">
-    <div class="code-line">[BOOT] loading modules...</div>
-    <div class="code-line">[SYS] initializing UI engine...</div>
-    <div class="code-line">[OK] connecting portfolio...</div>
+    <div class="code-line">[BOOT] initializing system...</div>
+    <div class="code-line">[LOAD] UI engine starting...</div>
+    <div class="code-line">[OK] portfolio ready...</div>
 </div>
 
 <div class="container">
@@ -238,31 +246,36 @@ img{
 <header>
     <img class="avatar" src="https://i.imgur.com/ohuYhH3.png">
     <h1>1fsi</h1>
-    <div class="tagline">Developer • Bots • Systems</div>
+    <div class="tagline">Developer & Systems Creator</div>
 </header>
 
+<!-- NAV -->
 <div class="nav">
     <div class="nav-item active" onclick="tab('home',this)">Home</div>
     <div class="nav-item" onclick="tab('info',this)">Info</div>
     <div class="nav-item" onclick="tab('bots',this)">Bots</div>
     <div class="nav-item" onclick="tab('servers',this)">Servers</div>
+    <div class="nav-item" onclick="tab('webs',this)">Webs</div>
 </div>
 
-<div id="home" class="box show fade-up">
+<!-- HOME -->
+<div id="home" class="box show">
     <h3>Welcome</h3>
-    <p style="opacity:.6">Portfolio system loaded successfully.</p>
+    <p style="opacity:.6">System loaded successfully.</p>
 </div>
 
-<div id="info" class="box fade-up">
+<!-- INFO -->
+<div id="info" class="box">
     <h3>Skills</h3>
     <ul>
-        <li>Bot Development Advanced</li>
+        <li>Bot Development</li>
         <li>Server Optimization</li>
         <li>Security Systems</li>
     </ul>
 </div>
 
-<div id="bots" class="box fade-up">
+<!-- BOTS -->
+<div id="bots" class="box">
     <div class="bots">
         <div>
             <div class="bot" onclick="img('https://imgur.com/ytWqc97.png')">Tickets Bot</div>
@@ -272,18 +285,75 @@ img{
     </div>
 </div>
 
-<div id="servers" class="box fade-up">
-    <h3>Coming Soon</h3>
+<!-- SERVERS -->
+<div id="servers" class="box">
+
+<h3>Servers Configurados</h3><br>
+
+<div class="grid">
+
+<div class="card" onclick="img('https://imgur.com/EozANvk')">
+    <h4>NeaNetwork</h4>
+    <p>Developer</p>
+    <span class="price">$50 USD</span>
 </div>
 
+<div class="card">
+    <h4>EventifyStudios</h4>
+    <p>Developer</p>
+    <span class="price">$25 USD</span>
+</div>
+
+<div class="card">
+    <h4>SkyHit</h4>
+    <p>Developer</p>
+    <span class="price">$50 USD</span>
+</div>
+
+<div class="card" onclick="img('https://imgur.com/dx07Hi5')">
+    <h4>MonteCraft</h4>
+    <p>Developer & Builder</p>
+    <span class="price free">FREE</span>
+</div>
+
+</div>
+</div>
+
+<!-- WEBS -->
+<div id="webs" class="box">
+
+<h3>Web Development</h3><br>
+
+<div class="grid">
+
+<div class="card">
+    <h4>Portfolios</h4>
+    <p>Modern landing pages</p>
+</div>
+
+<div class="card">
+    <h4>E-commerce</h4>
+    <p>Stores & panels</p>
+</div>
+
+<div class="card">
+    <h4>Dashboards</h4>
+    <p>Admin systems</p>
+</div>
+
+</div>
+</div>
+
+<!-- STATUS -->
 <div class="status">
-    SYSTEM ACTIVE
-    <div class="bar"><span></span></div>
+SYSTEM ACTIVE
+<div class="bar"><span></span></div>
 </div>
 
 </div>
 
 <script>
+
 function tab(id,el){
     document.querySelectorAll('.box').forEach(b=>b.classList.remove('show'));
     document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
@@ -297,42 +367,8 @@ function img(src){
     setTimeout(()=>{i.src=src;i.style.opacity=1},200);
 }
 
-setTimeout(()=>document.getElementById("loader").style.display="none",2500);
+setTimeout(()=>document.getElementById("loader").style.display="none",2200);
 
-/* MATRIX */
-const canvas=document.getElementById("matrix");
-const ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let letters="01ABCDEF#$%&";
-letters=letters.split("");
-
-const fontSize=14;
-const columns=canvas.width/fontSize;
-const drops=[];
-
-for(let x=0;x<columns;x++)drops[x]=1;
-
-function draw(){
-    ctx.fillStyle="rgba(0,0,0,0.05)";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    ctx.fillStyle="#00ff9d";
-    ctx.font=fontSize+"px monospace";
-
-    for(let i=0;i<drops.length;i++){
-        let text=letters[Math.floor(Math.random()*letters.length)];
-        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-
-        if(drops[i]*fontSize>canvas.height && Math.random()>0.975){
-            drops[i]=0;
-        }
-        drops[i]++;
-    }
-}
-setInterval(draw,33);
 </script>
 
 </body>
