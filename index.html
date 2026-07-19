@@ -50,7 +50,7 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.12;
+            opacity: 0.10;
             pointer-events: none;
         }
 
@@ -74,8 +74,8 @@
             background: repeating-linear-gradient(0deg,
                     transparent,
                     transparent 2px,
-                    rgba(0, 0, 0, 0.05) 2px,
-                    rgba(0, 0, 0, 0.05) 4px);
+                    rgba(0, 0, 0, 0.04) 2px,
+                    rgba(0, 0, 0, 0.04) 4px);
         }
 
         /* ===== LOADER ===== */
@@ -547,6 +547,86 @@
             letter-spacing: 0.1em;
         }
 
+        /* ===== GOAL CARD ===== */
+        .goal-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 24px 28px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .goal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ff4757, var(--p), #ff4757);
+            background-size: 200%;
+            animation: shiftGrad 4s linear infinite;
+        }
+        @keyframes shiftGrad {
+            to {
+                background-position: 200% 0;
+            }
+        }
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .goal-title {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            color: var(--text);
+        }
+        .goal-amount {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ff4757;
+            text-shadow: 0 0 20px rgba(255, 71, 87, 0.3);
+        }
+        .goal-amount .goal-target {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+        .goal-bar-wrap {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .goal-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff4757, #ff6b81);
+            border-radius: 3px;
+            transition: width 1.5s ease;
+            box-shadow: 0 0 15px rgba(255, 71, 87, 0.3);
+        }
+        .goal-label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+        }
+        .goal-label .current {
+            color: #ff4757;
+        }
+        .goal-label .target {
+            color: var(--muted);
+        }
+
         /* ===== SKILLS ===== */
         .skill-list {
             list-style: none;
@@ -987,11 +1067,6 @@
             background-size: 200%;
             animation: shiftGrad 4s linear infinite;
         }
-        @keyframes shiftGrad {
-            to {
-                background-position: 200% 0;
-            }
-        }
         .web-item:hover {
             border-color: rgba(127, 90, 240, 0.5);
             box-shadow: 0 12px 40px rgba(127, 90, 240, 0.15);
@@ -1355,16 +1430,16 @@
     </div>
 
     <!-- SIDE LABELS -->
-    <div class="side-label-l">1FSI · DEVELOPER · PORTFOLIO · 2025</div>
+    <div class="side-label-l">1FSI · CONFIGURADOR · DESARROLLADOR</div>
     <div class="side-label-r">MC · DISCORD · JAVA · WEB · PLUGINS</div>
 
     <!-- LOADER -->
     <div id="loader">
         <div class="loader-logo">1FSI</div>
-        <div class="loader-line" data-es="> INICIALIZANDO SISTEMA..." data-en="> INITIALIZING SYSTEM...">> INITIALIZING SYSTEM...</div>
-        <div class="loader-line" data-es="> CARGANDO MÓDULOS..." data-en="> LOADING MODULES...">> LOADING MODULES...</div>
+        <div class="loader-line" data-es="> CARGANDO PORTFOLIO..." data-en="> LOADING PORTFOLIO...">> LOADING PORTFOLIO...</div>
+        <div class="loader-line" data-es="> CONFIGURANDO MÓDULOS..." data-en="> CONFIGURING MODULES...">> CONFIGURING MODULES...</div>
         <div class="loader-line" data-es="> ESTABLECIENDO CONEXIÓN..." data-en="> ESTABLISHING CONNECTION...">> ESTABLISHING CONNECTION...</div>
-        <div class="loader-line" data-es="> ACCESO CONCEDIDO" data-en="> ACCESS GRANTED">> ACCESS GRANTED</div>
+        <div class="loader-line" data-es="> LISTO" data-en="> READY">> READY</div>
         <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
     </div>
 
@@ -1379,7 +1454,7 @@
                 <img class="avatar" src="https://i.imgur.com/ohuYhH3.png" alt="1fsi" />
             </div>
             <div class="header-name">1FSI</div>
-            <div class="header-tag"><span>// </span><span data-es="Desarrollador · Sistemas · Infraestructura MC" data-en="Developer · Systems · MC Infra">Developer · Systems · MC Infra</span></div>
+            <div class="header-tag"><span>// </span><span data-es="Configurador · Desarrollador · Infraestructura" data-en="Configurator · Developer · Infrastructure">Configurator · Developer · Infrastructure</span></div>
 
             <!-- LANGUAGE SWITCHER -->
             <div class="lang-switch">
@@ -1410,7 +1485,7 @@
         <div id="home" class="section show">
             <div class="s-header">
                 <div class="s-header-line"></div>
-                <div class="s-title"><span class="s-num">01.</span> <span data-es="SISTEMA ACTIVO" data-en="SYSTEM ACTIVE">SYSTEM ACTIVE</span></div>
+                <div class="s-title"><span class="s-num">01.</span> <span data-es="PRESENTACIÓN" data-en="PRESENTATION">PRESENTATION</span></div>
                 <div class="s-header-line right"></div>
             </div>
 
@@ -1425,12 +1500,42 @@
                     <div><span class="t-prompt">user@1fsi:~$ </span><span class="t-cmd">cat profile.json</span></div>
                     <div class="t-out">{</div>
                     <div class="t-out">&nbsp;&nbsp;<span class="t-val">"name"</span>: <span class="t-str">"1fsi"</span>,</div>
-                    <div class="t-out">&nbsp;&nbsp;<span class="t-val">"role"</span>: <span class="t-str" data-es="Desarrollador & Ingeniero de Sistemas" data-en="Developer & Systems Engineer">"Developer & Systems Engineer"</span>,</div>
+                    <div class="t-out">&nbsp;&nbsp;<span class="t-val">"role"</span>: <span class="t-str">"Configurador & Desarrollador"</span>,</div>
                     <div class="t-out">&nbsp;&nbsp;<span class="t-val">"stack"</span>: [<span class="t-str">"Java"</span>, <span class="t-str">"JavaScript"</span>, <span class="t-str">"Python"</span>],</div>
-                    <div class="t-out">&nbsp;&nbsp;<span class="t-val">"focus"</span>: <span class="t-str" data-es="Servidores Minecraft, Bots Discord, Seguridad" data-en="Minecraft Servers, Discord Bots, Security">"Minecraft Servers, Discord Bots, Security"</span>,</div>
+                    <div class="t-out">&nbsp;&nbsp;<span class="t-val">"focus"</span>: <span class="t-str">"Servidores · Bots · Web"</span>,</div>
                     <div class="t-out">&nbsp;&nbsp;<span class="t-val">"available"</span>: <span class="t-val" style="color:#27c93f;">true</span></div>
                     <div class="t-out">}</div>
+                    <div style="margin-top:12px;">
+                        <span class="t-prompt">user@1fsi:~$ </span><span class="t-cmd">echo $about</span>
+                    </div>
+                    <div class="t-out" style="color:var(--text); line-height:1.6; padding:6px 0;">
+                        "Buenas, soy configurador y desarrollador profesional. Me dedico a configurar servidores,
+                        crear páginas web y crear bots de Discord personalizados con todo tipo de funciones.
+                        Actualmente he trabajado en estos servidores y estudios:
+                        <span style="color:var(--cyan);">EventifyStudios</span>,
+                        <span style="color:var(--cyan);">Montecraft Network</span>,
+                        <span style="color:var(--cyan);">Nea Network</span>,
+                        <span style="color:var(--cyan);">SkyHit</span>."
+                    </div>
                     <div style="margin-top:8px;"><span class="t-prompt">user@1fsi:~$ </span><span class="t-cursor"></span></div>
+                </div>
+            </div>
+
+            <!-- GOAL CARD -->
+            <div class="goal-card">
+                <div class="goal-header">
+                    <span class="goal-title"><i class="fas fa-bullseye" style="color:var(--p);margin-right:10px;"></i><span data-es="META ECONÓMICA" data-en="FINANCIAL GOAL">FINANCIAL GOAL</span></span>
+                    <span class="goal-amount">
+                        $<span id="goal-current">0</span>
+                        <span class="goal-target"> / $900</span>
+                    </span>
+                </div>
+                <div class="goal-bar-wrap">
+                    <div class="goal-bar" id="goal-bar" style="width:0%;"></div>
+                </div>
+                <div class="goal-label">
+                    <span class="current" data-es="Recaudado: $0" data-en="Raised: $0">Raised: $0</span>
+                    <span class="target" data-es="Objetivo: $900" data-en="Target: $900">Target: $900</span>
                 </div>
             </div>
 
@@ -1470,7 +1575,7 @@
                 <li class="skill-item">
                     <div class="skill-icon"><i class="fas fa-server"></i></div>
                     <div class="skill-info">
-                        <div class="skill-name" data-es="Optimización de Servidores" data-en="Server Optimization">Server Optimization</div>
+                        <div class="skill-name" data-es="Configuración de Servidores" data-en="Server Configuration">Server Configuration</div>
                         <div class="skill-desc" data-es="SETUP // RENDIMIENTO // CONFIGS // RED" data-en="SETUP // PERFORMANCE // CONFIGS // NETWORK">SETUP // PERFORMANCE // CONFIGS // NETWORK</div>
                     </div>
                     <div class="skill-bar-wrap"><div class="skill-bar" style="width:0%" data-w="88%"></div></div>
@@ -1795,6 +1900,7 @@
                 document.getElementById('app').classList.add('visible');
                 animateCounters();
                 animateSkillBars();
+                animateGoal();
             }, 600);
         }, 2400);
 
@@ -1838,6 +1944,17 @@
             requestAnimationFrame(frame);
         }
 
+        // ─── GOAL ANIMATION ───
+        function animateGoal() {
+            const currentEl = document.getElementById('goal-current');
+            const barEl = document.getElementById('goal-bar');
+            const target = 900;
+            const current = 0;
+            const pct = (current / target) * 100;
+            currentEl.textContent = current;
+            barEl.style.width = pct + '%';
+        }
+
         // ─── SKILL BARS ───
         function animateSkillBars() {
             document.querySelectorAll('.skill-bar').forEach(b => {
@@ -1871,7 +1988,6 @@
             document.querySelectorAll('[data-es][data-en]').forEach(el => {
                 el.textContent = el.dataset[lang];
             });
-            // Actualizar badges y otros elementos con data-es/data-en
             document.querySelectorAll('.badge[data-es][data-en]').forEach(el => {
                 el.textContent = el.dataset[lang];
             });
@@ -1881,11 +1997,17 @@
             document.querySelectorAll('.server-role span[data-es][data-en]').forEach(el => {
                 el.textContent = el.dataset[lang];
             });
-            // loader lines (si están visibles)
             document.querySelectorAll('.loader-line[data-es][data-en]').forEach(el => {
                 if (el.closest('#loader') && el.closest('#loader').style.display !== 'none') {
                     el.textContent = el.dataset[lang];
                 }
+            });
+            // actualizar goal labels
+            document.querySelectorAll('.goal-label .current[data-es][data-en]').forEach(el => {
+                el.textContent = el.dataset[lang];
+            });
+            document.querySelectorAll('.goal-label .target[data-es][data-en]').forEach(el => {
+                el.textContent = el.dataset[lang];
             });
         }
     </script>
